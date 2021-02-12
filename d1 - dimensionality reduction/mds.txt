@@ -1,0 +1,27 @@
+multidimensional scaling (mds)
+-classical (metric) = principal coordinate analysis (pcoa)
+-non-metric
+
+
+PCA -> turn correlation into 2D plot -> highly correlated samples form clusters
+
+mds and pcoa are very similar to pca; convert distances among samples into 2d graph rather than correlations
+
+calculating distances
+-euclidean
+
+using euclidean distance = pca graph
+== clustering based on minimizing linear distances is the same as maximizing linear correlations
+
+
+avg of abs value of log fold change
+
+
+
+
+
+PCA 
+= correlations among samples -> math (eigen decomp) -> coords for a graph + percent variation ea axis accs for + loading scores 
+
+MDS 
+= distances among samples -> ...""

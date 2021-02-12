@@ -1,0 +1,11 @@
+PCA and LDA multiply data by a matrix
+-this is a linear transformation
+-they can only projectdata onto a hyperplane
+
+nonlinear DR (manifold learning)
+-t sne
+-mds
+-kernel pca
+-autoencoder
+
+primary adv of deep learning is that it works on unstructured data that may have a lot of covariance
