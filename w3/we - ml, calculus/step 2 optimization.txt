@@ -1,0 +1,52 @@
+using optimize module in scipy
+
+scipy.optimize
+-minimize_scalar()/minimize() to minimize fn of one/many variables
+-curve_fit() to fit a fn to a set of data
+-root_scalar()/root() to find zeros of a fn of one/many variables
+linprog() to minimize linear obj fn with linear inequality/equality constraints
+
+import numpy as np
+from scipy.optimize import minimize, LinearConstraint
+
+n_buyers = 10
+n_shares = 15
+
+np.random.seed(10)
+prices = np.random.random(n_buyers)
+money_available = np.random.randint(1, 4, n_buyers)
+
+n_shares_per_buyer = money_available / prices
+print(prices, money_available, n_shares_per_buyer, sep="\n")
+
+constraint = LinearConstraint(np.ones(n_buyers), lb=n_shares, ub=n_shares)
+
+in this code, created an array of ones with length n_buyers and pass it as teh first argument to lineraconstraint, which takes the dot product of the solution vector with this argument and results the sum of purchased shares
+the result is then constrained to lie btw two arguments
+-upper bound ub, lower bound lb
+
+create bounds for the solution variable; bounds limit the number of shares purchased ot be 0 on the lwoer side and nsharesperbuyer on the upperside
+
+bounds = [(0, n) for n in n_shares_per_buyer]
+
+comprehension to generate lsit of tuples for each buyer. last step before you run opt is to define obj fn prices[0]*x[0] + prices[1]*x[1] + ... + prices[n]*x[n], which is basically an inner product
+
+def objective_function(x, prices):
+    return -x.dot(prices)
+
+returning negative because trying to make that number as small as possible (as close to negative infinity)
+
+res = minimize(
+    objective_function,
+    x0=10 * np.random.random(n_buyers),
+    args=(prices,),
+    constraints=constraint,
+    bounds=bounds,
+)
+
+res is an instance of optimizeresult 
+-x0 is an initial guess for the values of the solution; we provide a random array of values btw 0 and 10 with length n_buyers
+-args is a tuple of other arguments that are necessary to be passed into obj function
+-constraints - passing constraint generated earlier 
+-bounds
+

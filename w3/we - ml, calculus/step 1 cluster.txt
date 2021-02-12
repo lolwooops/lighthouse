@@ -1,0 +1,107 @@
+min max fn (optimizations) in python
+
+scipy, clustering, optimization
+
+clustering - popular technique to categorize data by associating it into groups
+scipy includes implementation of kmeans, hierarchical 
+
+kmeans vluster.vq (vector quantization)
+
+dataset 
+-ham = legitimate
+-spam = spam
+
+cluster data into 3 groups based on number of digits in the msg
+-not spam = smallest number of digits 
+-unknown - intermediate
+-spam - highest number of digits
+
+from pathlib import Path
+import numpy as np
+from scipy.cluster.vq import whiten, kmeans, vq
+
+<<feature = variable of interest>>
+
+read data into list using pathlib.Path
+	data = Path("SMSSpamCollection".read_text()
+	data = data.strip()
+	data = data.split("\n")
+
+-read_test() to read file into string
+-strip() to remove trailing spaces
+-split() to split string into list
+
+count number of digits that appear in each msg
+-can't use collections.Counter since all the fn in cluster.vq expect numpy arrays
+-> create numpy array that associates number of digits in a given msg with result of msg 
+
+	digit_counts = np.empty((len(data,2),dtype=int)
+
+creates empty numpy array, digit_counts, which has two columns and 5.5k rows (=to number of msgs in dataset); use digit_counts to associate number of digits in msg with whether or not msg was spam
+
+create the array before entering loop (improves efficiency of code)
+
+for i, line in enumerate(data):
+	case, msg = line.split("\t")
+	ndigits = sum(c.isdigit() for c in msg)
+	digit_counts[i,0] = 0 if case == "ham" else 1
+	digit_counts[i,1] = num_digits
+
+-this code loops over data using enumerate to put the value from the list in line and create and index i for this list. 
+-splits the lin on the tab character to create case and msg; case is a string  that says whether msg is ham or spam while msg is a string with the text of the msg
+-calculate the number of digits in the msg with sum() of a comprehension; in the comp, check each char in the msg using isdigit() which returns True if element is a numeral; sum treats each True as a 1
+-assign values into digit_counts, assign first column of the i row to be 0 if msg was legit or 1 if msg was spam
+-assign values into digit_counts - 2nd column of i row to be number of fitis in the msg
+
+=> given numpy array that contains number of digits in each msg, want to apply clustering alg to an array that has number of msg with a certain number of digits - need to create an array where first column has the number of digits in a msg and 2nd col is the number of msgs that have that num of digits
+
+	uniquecounts = np.unique(digit_counts[:,1], return_counts=True)
+
+this takes an array as the first argument and returns another array with the unique elements from the argument; return_counts returns an array with number of times each unique element is present in the input array - both returned as a tuple stored in unique_counts
+
+transform unique_counts into shape for clustering
+
+	unique_counts = np.transpose(np.vstack(unique_counts))
+
+combine the two 1xN ouputs from np.unique() into one 2xN array using np.vstack() then transpost them into an Nx2 array
+-row in unique_counts has 2 elements
+	-# of digits
+	-# of msgs that had that number of digits
+
+applying kmeans
+	whitened_counts = whiten(unique_counts)
+	codebook, _ = kmeans(whitened_counts,3)
+
+whiten normalizes each feature to have unit variance, which improves results of kmeans; kmeans takes whitened data and # clusters to create arguments
+-want 3 clusters for definitely ham, definitely spam, and unknown
+
+2 values returned from kmeans
+array with 3 rows and 2 columns rep centroids of each group
+-kmeans calcs the optimal location of the centroid of ea cluster by minimizing distance from the obs to each centroid; assigned to "codebook"
+-mean euclidan distance from obs to centroids
+
+determine which cluster ea obs belongs to by using vq()
+	codes, _ = vq(whitened_counts, codebook)
+
+vq() assigns codes from codebook to each obs
+-first value is an array of the same length as unique_counts, where value of ea element is an integer rep which cluster that obs is assigned to. since 3 clusters used, ea obs is assigned to cluster 0,1,2
+-2nd value is array of eucl distance btw ea obs and centroid
+
+identifying clusters
+	ham_code = codes[0]
+	spam_code = codes[-1]
+	unknown = list(set(range(3)) ^ set((ham_code,spam_code)))[0]
+last line = use symmetric difference operator on python set to determine last code value
+
+check how accurate predictions are on this dataset
+
+	digits = digit_counts[:,1]
+	predhams = digits == 0
+	predspams = digits > 20
+	predunknown = np.logical_and(digits>0,digits<=20)
+
+	spamcluster = digit_counts[predspams]
+	hamcluster = digit_counts[predhams]
+	unkcluster = digit_counts[predunknown]
+
+applying masks created in last block to digit_counts array, creating 3 new arrays with only the msgs that have been clustered into each group 
