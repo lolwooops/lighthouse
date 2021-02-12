@@ -1,0 +1,24 @@
+feature engineering
+
+better features = more flexibility, better results
+-less than optimal/less complex models
+	-easier to understand/maintain
+-able to choose less than optimal parameters
+
+process of transforming raw data into features that better represent problem to predictive models -> improved model accuracy on unseen data
+-performance measures
+-framing of the problem
+-predictive models
+-raw data selected
+
+
+representation problem: what is the best rep of the sample data to learn a solution to problem
+
+feature importance
+
+feature extraction - the automatic construction of new features from raw data
+-auto reduce dimensionality
+-PCA
+
+feature selections
+-scoring methods: eg, correlation, feature importance

@@ -1,0 +1,54 @@
+outliers
+2 main types of outliers
+-univariate
+-multivariate
+-can spot extreme values that don't appear as univariate
+
+reasons for outliers
+-data entry errors
+-measurement errosr
+-experimental errors
+-intentional outliers
+-sampling errors (sample too small)
+-natural outliers
+
+
+impact of outliers on a dataset
+-increase error variance -> reduce power of statistical tests
+-bias/influence estimates
+-impact basic assumption of regression/other model assumptions
+
+eg outliers massively change mean and sd
+
+
+how to detect ouliers
+-statistical tests
+-distance based approaches
+-density based appraoches
+-visualization
+
+
+stat tests
+-assume that normal data objects follow known dist and occur in high prob region of this dist
+-outliers deviate from this dist
+-use range (-1.5IQR to 1.5IQR); 5th - 95th percentile; 3 or more sd from mean
+	2 main problems with this approach
+	-fit data to one of the known dist
+	-mean sd and IQR are affected by the outliers (unreliable)
+
+distance based
+-judging a point based on distance to neighbors
+-assume that normal data objects have dense neighbourhood; outliers far from neighbors
+-popular algorithm = knn
+	-computes distance to the nearest neighbor of a point x and compares it with the same distance for k nearest neighbors; if distance is significantly higher we consider the point as an outlier
+
+density based
+-assume that the density around normal data objects is similar to the density around its neighbors
+-outliers have different density
+-common technique = LOF (local outlier factor)
+
+visualization
+-graphically identify outliers
+	-boxplots
+	-histograms
+	-scatterplot (multivariate)

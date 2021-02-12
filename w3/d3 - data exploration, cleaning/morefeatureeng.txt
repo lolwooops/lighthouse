@@ -1,0 +1,36 @@
+feature engineering numeric data
+
+understand features
+-raw features = obtained directly from dataset with no manipulation or engineering
+-derived features = obtained from FE
+
+-counts
+-binarization
+-rounding
+-interactions
+-binning
+	-fixed width binning
+	-adaptive binning
+
+statistical transformation
+-log transform
+	-for skewed distributions
+	-compresses/reduces values of higher mag
+-boxcox transform
+	-must be positive (shift with constant)
+
+
+
+using ml in feature eng
+
+supervised - output of predic to predict something else
+-prediction of mv
+	-features without missing values to train predictor of mv
+-outlier detection
+	-marked outliers in prev obvs
+
+unsupervised - assigning new categories to all obvs
+-outlier detection
+	-outliers assigned to separate cluster
+-feature creation
+	-cluster = new var used for prediction

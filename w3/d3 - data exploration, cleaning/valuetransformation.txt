@@ -1,0 +1,43 @@
+value transformation
+
+need data in numeric format, some models work best with normally dist data
+-basic trans
+-binning
+-scaling
+-dummy variables
+
+binning very important for 
+-decision trees
+-interpretability of regression algorithms
+	-binning loses information
+
+
+scaling
+bringing all features to same level of magnitudes
+
+standardization
+-redistributes features with mean 0 and sd 1
+-skl.preprocessing.scale
+mean normalization
+-dist with values btw -1 and 1 with mean 0
+-standardization and mean normalization can be used for alg that assumes 0 centric data like PCA
+min-max scaling
+-scaling brings value between 0 and 1
+unit vector
+-done considering whole feature vector to be of unit length
+minmaxing and unit vector techniques produces values of range [0,1]
+
+
+
+any algorithm that computes distance or assume normality - scale
+-knn (knn uses euclidean distance)
+-pca (gets features with max variance)
+	-high mag features have high var so pca skewed towards high mag
+-gradient descent (speed up)
+-tree based models (not req)
+
+
+dummy variables
+dummy variable is a numeric variable that represents categorical data 
+used to analyze regression equations when one or more indep var are cat
+typically dv takes on 2 values 0,1

@@ -1,0 +1,16 @@
+-check shape of df
+-check data types, column names
+	-df.dtypes
+-remove duplicate ids in data
+
+
+exploring data
+-explore target variable
+	-descriptive stats, histogram
+-relationship btw target and predictors
+	-domain knowledge
+-checking relationship
+	-scatterplot
+	-box plots
+-multivariate analysis
+	-heatmaps (correlation map)

@@ -1,0 +1,69 @@
+unsupervised learning
+
+machine learning is a technique where a computer program acepts inputs and predicts target variable; training alg on sample of dataset
+-there is cost/penalty fn, alg tries to reduce this fn as much as possible -> closer to predicitng correct values
+
+less used in industry
+
+dimension reduction, generative networks, clustering
+
+drawing inferences from data which does not have labels (target, y)
+not trying to predict a label; group data together on similar attrib
+
+applications 
+-marketing/ad targeting
+-banking (fraud ccard, credit spending prediction)
+-insurance (fraud, risk models)
+-social media (fact checking, article classification) 
+-medicine (pharm trials, genetic markers)
+
+
+clustering - creating groups out of data points based on closeness
+dividing data into clusters based on centroids, distributions, densities
+
+
+
+kmeans
+-choose k, number of potential clusters
+-initialize cluster centers randomly within data
+-instances are clustered to the nearest cluster centre
+-centroids of each k clusters become new cluster centers
+-repeat until convergence
+
+kmeans shortcomings
+-convergence of alg not guaranteed
+-number of clusters must be set beforehand
+
+expectation maximum (em)
+
+
+
+hierarchial
+dendrograms
+optimal = longest line
+
+linkage criteria
+-how are you going to calc distance btw 
+
+single linkage
+-distance btw closest points in ea cluster
+complete linkage
+-distance btw farthest points in ea cluster
+avg cluster
+-avg distance btw points in ea cluster
+
+
+
+dbscan (density based)
+-spherical shape; arbitrary shape; noise
+let r be a parameter specifying radius of neighborhood wrt some point and let m be an umber of points we want in a neighborhood to define a cluster
+
+points are classified as core points, border points, and outliers
+-core point if at least m points are within distance r of it (including p)
+-border point if it is near a core point but doesnt have m points in its r neighborhood
+-core point is directly density reachable from another core if it is within distance r from it. 
+-point is density reachable from core if there is a path where each is directly reachable; note that this implies that the initial point from all points on the path must be core points
+	-all points in this chain path are called density connected
+-all points not reachable from any other point are outliers or noise
+
+eps (epsilon) = how far alg looks for points

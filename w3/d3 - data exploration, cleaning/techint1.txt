@@ -1,0 +1,24 @@
+numpy arrays - more efficient and more functionality
+array and list mutable; tuple immutable
+
+use examples
+
+== > identity (assigned)
+is > face value
+
+
+p value - tells you strength of results - how likely result is happening to chance or is it really happening
+-probability of error
+
+
+use examples - start making own notes
+-use examples relatable to you
+
+
+correlation vs causation
+spurious correlation
+
+gg
+bg
+gb
+bb

@@ -1,0 +1,39 @@
+hierarchical clustering
+-connectivity based
+based on the idea of objects being more related to the nearby objects than to object father away
+cluster can be described by the maximum distance needed to connect the parts of the cluster
+
+different distances = different clusters -> dendrogram
+dendrogram 
+-y axis = distance at which cluster merge
+-x axis = objects
+
+agglomerative (bottom up)
+-each point is a cluster
+-repeatedly combine the two nearest clusters into one
+
+3 questions
+-how do you represent a cluster of more than one point
+	-centroid (average of its points)
+-how do you determine the nearness of clusters
+	-cluster distances by distances of centroid
+-when to stop combining clusters
+	-pick a number k	
+	-stop when next merge creates cluster with low cohesion 
+	-
+
+-clustroid - data point (from original set) closest to other points
+	-treat clusteroid as if it was centroid
+
+
+-cohesion - diameter of merged cluster - max dis btw points in cluster
+	- radius - max dis of point from cluster/clustroid
+	- density based approach 
+
+
+
+
+
+divisive (top down)
+-start with 1 cluster and recursively split it
+

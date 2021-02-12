@@ -1,0 +1,54 @@
+null values
+
+missing data can reduce power/fit of model - leads to wrong prediction or classification
+
+handling missing values
+-deleting rows
+	-for more than 70% missing values
+	-only advised when there are enough samples
+	-have to make sure that there is no addition of bias after del
+		-loss of information
+
+-replace with mean/median/mode (leaking data while training)
+	-can add variance to data set
+	-approx with deviation of neighboring values
+	
+	-better approach when data size is small
+	-prevents data loss
+
+	-imputing approx add variance and bias
+	-works poorly compared to other imput methods
+
+-assigning unique category
+	-add more information into dataset 
+		-result in change of variance
+	-need to find one hot encoding to convert into numeric form
+
+	-less possibilities with one extra category
+		-low variance after one hot encoding (bc categorical)
+	-negates loss of data
+
+	-adds less variance
+	-adds another feature to model -> poor performance
+
+-predicting missing values
+	-using features without missing values -> predict nulls with alg
+	-result in better accuracy? unless MV has high variance
+	-can use linear regression to replace nulls
+
+	-imputing missing variable is improvement
+		-only if bias from same smaller than omitted var bias
+	-yields unbiased estimates of model parameters
+
+	-bias arises when incomplete conditioning set used
+	-only a proxy for true values
+
+-using algorithms which support missing values
+	-eg knn
+	
+	-does not req creation of predictive model for ea attribute w MV
+	-correlation of data is neglected
+	
+	-very time consuming 
+	-choice of distance fn can be very diff (eg euclidean) 
+		-does not yield robust result
