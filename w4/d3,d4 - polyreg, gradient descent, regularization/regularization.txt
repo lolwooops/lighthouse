@@ -1,0 +1,37 @@
+ridge l2 regression
+
+find a new line that doesnt fit the training data as well by introducing bias for a large drop in variance
+-> worse fit => better predictions
+
+least squares minimizes ssr
+
+ridge regression minimizes ssr + lambda*slope^2
+where lambda is the magnitude of penalty on traditional ls method
+
+
+use cross validation to find which lambda results in lowest var
+
+
+when applied to logisticreg, ridge optimizes sum of likelihoods instead of ssr because logistic reg is solved using max likelihood
+
+
+when sample sizes are small, rreg can improve preds made from new data by making the preds less sensitive to the training data; done by adding penalty (lambda, which is determined by cross validation)
+-even if there isnt enough data to find least squares parameter estimates, ridge regression can still find a solution with cross validation and the ridge regression penalty
+
+
+
+
+
+lasso l1 regression
+
+laso regression minimizes ssr + lambda*|slope|
+results in a line with a little bit of bias but with less variance
+
+-makes prediction less sensitive to training set
+
+cant be applied in the same context
+
+
+difference btw ridge and lasso is ridge reg can only shrink the slope aymptotically to 0 while lasso can shrink the slope all the way to 0
+-> lasso can excl useless variables; better than ridge at reducing vairance in models with a lot of useless variables
+-> ridge does better when most variables are useful

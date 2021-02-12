@@ -1,0 +1,83 @@
+dimensionality reduction (pca,lda)
+feature selection (filter, wrapper)
+
+improved model performance
+-denoising
+-disentangled features
+-fewer model parameters
+-less overfitting
+
+lower computation complexity
+-dimensionality reduction as compression (less mem)
+-fewer computations (smaller matrix mult)
+
+dimensionality reduction as unsupervised learning
+-high dem data often exists on a low dim manifold
+-reducing dim -> true underlying structure
+
+
+
+PCA - principal component analysis 
+essentially svd
+
+pikcing number of pcs
+one strat - number of pcs up to a certain % of total variance explained
+
+projects onto pcs
+project ea data point (vector) onto ea pc (vector)
+projection is done using dot product
+
+mean center data before doing PCA **********************
+scale
+
+PCs represent
+-size d vectors spanning original space
+when a data point is projected onto  one, gives a number (these numbers together preserve as much information as possible)
+
+
+
+
+LDA 
+-also reduces dimensionality
+PCA component axes that maximize variance
+LDA projections minimize intra class variance; maximize inter class var
+
+
+
+
+feature selection vs DR
+DR -> creates new features that are fn of the original ones
+feature selection -> removes redundant features and keeps important 1s
+-interpretability
+
+filter methods
+-measure relevance of feature by correlation with depedent variable (target)
+-if feature is correlation with target, keep
+-applied before training ML model
+	-disadvantages = ignores feature combos;keeps redundant feat
+
+wrapper methods
+-train ml models with different subsets of features
+-if feature improves performance, keep
+-applied DURING ML
+	-advantages
+		-eval feat in context of others
+		-performance driven
+	-disad
+		-slow, retrain model several times
+
+forward selection wrapper method
+-selectedfeatures = []
+-find f in (allfeatures-selectedfeat) that if added, increase perf
+-if adding f improved perf more than some threshold then add it to selected and repeat 2
+
+backward
+-selectedfeatures = allfeatures
+remove the ones that dec perf
+
+recursive elimination
+-pick k, number of features to select
+-use model (usually linear) to assign weights to features (weights of important features have higher abs value)
+-remove feature with smallest abs value weight
+go back to 2 until only k features left
+

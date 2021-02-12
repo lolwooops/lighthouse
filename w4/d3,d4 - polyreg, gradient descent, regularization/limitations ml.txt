@@ -1,0 +1,18 @@
+limitations of ml
+
+ethics
+
+deterministic problems
+-machine learning is stochastic, not deterministic
+-no physical constraints
+
+data
+-lack of data
+-lack of good data
+
+misapplication
+-phacking (noise producing stat sig)
+-scope of analysis
+
+interpretability
+-ml models arent very useful if you cant produce information

@@ -1,0 +1,30 @@
+generalization error
+measure of how accurately an alg is able to predict outcome
+-main goal of supervised learning is to find a fn h where h(x) = y for all examples
+>impossible, so we find the best approx -> optimization
+
+
+loss fn (vs risk fn)
+measuring how far our model is from the actual values
+(how far estimated value of quantity from true value)
+-estimated value is a function of the data
+
+loss fn depends on specific problem
+eg squared error loss; abs error loss; lp loss, etc
+
+measurement that is avg over many possible datasets
+-risk = avg measure of loss, expected value of loss
+
+--> calc risk fn by taking expected value of loss fn. 
+
+-argmin = looking for a fn h from a pool of functions H that minimizes risk fn
+
+
+
+3 main things go wrong in training -> overall generalization error
+approximation
+-choose H or an l which are too simple, accuracy of model negatively affect by approximation error
+estimation
+-when we don't have enough data (complex models req more data)
+optimization
+-loss fn is too complex, dont find optimal solution. too much data can increase optimization error as well

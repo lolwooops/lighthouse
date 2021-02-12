@@ -1,0 +1,28 @@
+linear regression
+predictive model that assumes linear relationship btw variables
+
+minimize square of distance btw obs values and line
+->take derivative = 0
+
+final line minimizes sum of least squares
+
+
+general linear models
+-least squares for line
+-calc r^2
+-p value for r^2
+
+variance = avg sum of squared means
+r^2 = var(mean)-var(fit)/var(mean)
+f = var explained by x / var not explained by x
+
+
+strongest advantages of linear regression is interpretability (white box model) 
+
+
+
+
+polynomial regression
+y = bo x + b1x1 + b1x1^2 + ... + bnx1^n
+
+

@@ -1,0 +1,113 @@
+machine learning fits the data we give them
+any bias existing in the data the model will learn
+
+
+
+
+optimization
+-min loss fn
+gradient descent
+-gradient = multidimensional derivative
+@ loss fn, lowest loss = best performance
+-optimal weight vector w
+-occurs when L is flat (d/dw L = 0) where w = (XtX)-1 Xty
+
+sometimes cant solve for w that makes the derivative of w 0
+other times, there are multiple solutions (local)
+
+
+-initialize parameters
+-compute gradient of loss fn wrt parameters
+	-loss fn would increase if we moved in direction of gradient
+->move parameters in opposite direction so loss decrease
+	->parameters are now better bc they result in lower loss
+-repeat
+
+
+
+decisions
+-how much do we move in the opposite direction of the gradient ea iteration? --> learning rate
+	-optimal setting depends on model and loss fn
+	-found using trial and error
+	-doesn't need to be a constant 
+-how many update iterations do we want to perform
+	-can use constant value; number of times update = epochs
+	-can keep updating until loss stops decreasing (converged)
+
+
+effect of learning rate
+-learning rate too large -> will miss the min
+-too small -> training takes too long
+
+
+
+stochastic/minibatch GD
+gd is computationally expensive
+SGD -> randomly sample data points + update using its gradient
+-results in noisy approx of true gradient
+-using noisy updates converges to better solutions that are closer to global min (can esc bad local min)
+
+
+
+
+regularization
+addressing overfitting
+
+data has 2 components - signal (pattern) + noise
+goal of ml is to model the pattern and ignore the noise
+when the model is fitting the noise, it is overfitting
+-noise is random and won't be the same on new data 
+
+detecting overfitting
+->best complexity happens on testing error min
+
+model complexity -> space of fn a mdoel can learn
+influenced by
+-model architecture (structure, type)
+-model flexibility (number of parameters)
+-particular solution we converge to (final parameters)
+example of linear reg arch (parameters come from weights connecting features to dependent var)
+-complexity of linear reg models inc when numbers of parameters inc
+-number of parameters increase with number of features used (dimensionality)
+
+
+combating overfitting
+-use a less powerful model
+-reduce number of parameters
+	-for lin reg, reducing number of features/dimensionality reduc
+-limit parameter space (reduce space of possible fn)
+	-parameter regularization
+
+
+regularization
+-constrain the parameter space by adding additional loss term on parameters
+-with weight PENALTY, parameters can no longer vary freely
+
+ridge regression
+uses L2 penalty (penalizes weights based on squared sum)
+-prevents overfitting when there is a lot of collinearity btw features
+-model has reduced variance (more consistent model for smaller variations in data)
+-irrelevant features get small weights instead of being used by model to fit noise
+
+	L(x,y,w) = V(x,y,w) + lambda(wtw)
+
+where you vary lambda 
+
+lasso regression
+uses l1 penalty (penalizes weights based on abs value sum)
+-irrelevant features get weights of 0, instead of being used by model to fit noise
+-can be used for feature selection (pick features with >0 weight)
+
+	L(x,y,w) = V(x,y,w) + lambda|w|
+
+elastic net regression
+-only care about getting best performance on test set
+=> use both l1 l2 penalties
+
+	L(x,y,w) = V(x,y,w) + lambda1(wtw) + lambda2|w|
+
+if lambda is too small, can overfit
+if lambda is too large, can underfit
+-> simplest way to pick this hyperparameter is trial and error
+	grid search with cross validation
+

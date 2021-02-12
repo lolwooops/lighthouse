@@ -1,0 +1,48 @@
+intro to machine learning
+
+supervised learning 
+we have a set of observations X with an associated response y, find model function that relates x to y
+-> predice future obs
+
+examples = rows = samples=records=instances (n)
+features=inputs=predictors=explanatoryvariables=regressors=indepvar=covariates(X)
+targets=outputs=outcomes=response/depvariable=labels(y)
+training=learning=fitting
+
+SPLIT X AND Y
+SPLIT TRAINING AND TEST SETS
+-train test split from sklearn
+
+train using training data => 2 scores: training vs test
+doesnt matter how good trianing score is because test score is what matters
+good models generalize well -> similar scores
+
+
+fundamental trade off (bias vs variance)
+-complex -> high training score compared to test score (overfit)
+-simple -> low training score and low test score (underfit)
+
+models that have ex high training scores (too good to be true) are highly complex that learned very complex relationships in the training data
+
+minimizing approx error = model generalizes well
+-generally trade off btw complexity and test error
+-more complex model will fit closer to peculiarities of training set
+	-not likely to generalize to new data
+
+bias error is error from erroneous assumptions in learning alg; high bias can cause an alg to msis relevant relations btw features and target outputs (diff btw what you expect to learn and truth)
+variance is an error from sensitivity to small fluc in training set; high var can cause alg to model the random noise in the training data rather than intended outputs (overfit) - diff btw what you expect to learn and what you do learn
+
+
+linear regression
+assumes linear relationship btw dep var and indepvar
+
+simply linear reg = only 1 input
+y = c + mx
+multiple linear reg
+y = c+m1x1+m2x1+...mnxn
+
+y = w(t)x + b (matrix representation) where w is the weight vector and b is the bias
+
+
+
+
