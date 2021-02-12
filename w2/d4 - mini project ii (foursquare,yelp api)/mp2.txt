@@ -1,0 +1,50 @@
+Mini project II
+
+
+Project flow structure
+-grabbed keys
+-pulled from yelp first; limited by 4[] pull limit from yesterday
+-pulled edmonton and calgary coffeehouses
+-set up sql with sqlalchemy
+-pulled from foursquare
+-had to spend a lot of time researching/troubleshooting how to deal with formatting
+-realized by the end of it most of them were going to be franchised stores
+-removed them and counted whatever the two apis could catch
+
+
+-explore endpoint was able to catch some ratings for 4[] but not a lot
+
+
+results
+-discounting tim hortons, starbucks, second cup out of 50 ea
+-lower numbers for yelp in edmonton
+	-heard  that yelp only captures locations with votes
+	-maybe edmonton people vote less
+	-maybe yelp caught more fast food places in that area
+-since no rating from 4[], here are top 10 coffee shops in calgary and edmonton
+	-seems like significantly more 5* in calgary
+
+used a package from python called folium
+folium makes it easy to visualize spacial data, provides interactive maps that kinda function like google maps
+mapped the coffeehouses; red is yelp, green is 4[]
+for both apis i didn't use lat/long so that might explain why the results seem so clustered
+	-could also be because the apis count from different areas differently and got caught by the 50 limit
+
+
+favorite api
+-better api is definitely yelp, data is easily accessible, not a lot of nesting
+-4[] json pulls are disgusting and very nested, requires a lot of cleaning 
+-also yelp delivers ratings more easily
+
+
+challenges
+-definitely most time consuming thing was dealing with 4[] limit from yesterday
+-also lots of reading and researching to deal with bad format
+-found some cool stuff, like RenderJSON and could use .pop to take a whole nested section out
+-50 pull limit sucks
+
+if more time
+-originally i was going to pull coffeeshops from calg edm fortmac banff jasper and red deer, which i actually did; restarted proj
+-way easier to compare the apis and see their coverages 
+	-rather than @ 50 limit like here
+-also heard that you can get rating by using premium pulls from 4[] or by repulling venue_id endpoint after an initial explore endpoint pull
