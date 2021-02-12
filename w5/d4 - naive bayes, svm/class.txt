@@ -1,0 +1,85 @@
+review
+
+logreg - information value
+-logical variables -> which are useful
+
+sklearn -> doesnt report some things statsmodels does
+linreg - watson test (sklearn doesnt report it)
+
+never undersample - 
+
+smote - synthetic minority oversampling technique
+sampling - always try bootstrapping
+
+
+
+
+
+bayes theorem
+-way of finding probability when we know certain other probabilities
+
+Naive bayes
+-robust classifier
+-not affected by irrelevant features
+-assumption - indep var not correlated
+-doesnt care about distribution, skewness, bias in data
+
+map rule
+
+zero freq problem (with naive bayes)
+if cat variable has cat in dtest data set which was not obs in training set, model will assign 0 prob and will be unable to make a prediction
+-use smoothing technique (laplace estimation)
+
+
+different naive bayes for discrete
+-gaussian
+-multinomial
+-bernoulli
+
+adv
+-fast
+-straightforward
+-good for small dataset
+
+-good for text classification
+
+-use f1, kappa score
+precision, recall
+accuracy via conf matrix
+
+
+to improve nb model
+-cont features do not have norm dist, use transformation or diff methods to convert it to norm dist
+-zero freq problem -> laplace smoothing
+-remove correlated features 
+-focus on preprocessing data and feature selection
+-apply some combination technique (ensembling etc)
+
+
+association rule mining
+-simple alg, using apriori
+-confidence -> likelihood of y being purchased when x is purchased
+-lift -> liekliehood of item y being purchased when x is purchased while taking popularity of y
+
+
+
+support vector machines
+fails with big datasets, 10k rows, 3 dimensions
+
+maximum margin is good
+implies that only support vectors are important
+
+hard vs soft margin
+hard = no crossing border or in margin, soft can be in margin
+
+kernels -> feature projections to higher dimension
+
+
+
+DepVar = numeric and not fluctuating like ecg - regression
+-lreg, randomforest reg, xgboost reg
+DV = numeric and fluc - time series problem
+-var, arima, garima, sarima, new trend with neural networks
+DV = categorical (<=5) - classification
+-log res, naive bayes, random forest, xgboost, lda
+

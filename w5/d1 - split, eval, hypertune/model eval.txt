@@ -1,0 +1,82 @@
+model evaluation
+metrics necessary in order to quantify model performance, choice depends on given ml task
+
+regression metrics
+-mse
+-rmse
+-mae
+-r2
+-adj r2
+
+classification metrics
+-accuracy
+-precision/recall
+-f1
+-roc, auc
+-log loss
+
+
+
+
+
+regression evaluation
+
+mean squared error (mse) - avg of squared diff btw taget value and pred value - penalizes small error whichl eads to over estimation of how bad the model is
+-preferred because differentiable and can be optimized
+
+root mean squared error (rmse) - squrt of avg squared diff btw target and pred value
+-preferred bc errors are squared before avg -> high penality on large errors
+
+mean abs error (mae) - abs diff btw target and value pred
+-more robust to outliers and does not penalize as hard
+-linear score - all indiv diff weighted equally
+-not suitable for applications where you want to pay more attention to outliers
+
+coefficient of determination (r2) 
+used for eval performance of reg 
+compares model to constant baseline (baseline = mean of data); r2 is scale free, 0 < r2 < 1
+
+adj r2 
+-same meaning as r2; r2 suffers from score improving when features increase even though model is not improving -> adj r2 adj for increasing predictors
+
+
+
+r2 is negative 
+-chosen model does not follow trend of data
+-large number of outliers causes mse of mdoel to be more than mse of baseline
+-no intercept 
+
+
+
+
+
+classification eval
+
+precision - ratio btw true positives and all positives
+-measure of patients correctly idenfitied; measure of relevant data points
+
+recall - measure of model correctly identifying true positives
+-measure of how accurately model is able to identify relevant data
+
+accuracy - ratio of total number of correct pred to total pred
+
+achieving both high precision and recall is not possible
+-high recall - might predict all who are positive but will get false positive
+-high precision - avoid false positive but miss a lot of actual positives
+
+f1 score - trade off btw precision and recall - harmonic mean
+-> good f1 = good precision and good recall
+
+false positive rate, true negative rate
+
+visualize precision and recall 
+-roc curve - plot btw true positive rate, false positive rate
+-auc -> aim for high value of auc btw 0,1
+	-high auc = models with good skill
+
+
+
+lift curve
+lift describes performance coefficient over cumulative proportion of a population
+lift measures effectiveness of predictive model (ratio btw results obtained with and without predictive model)
+

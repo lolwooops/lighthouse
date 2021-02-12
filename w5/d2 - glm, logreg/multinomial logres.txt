@@ -1,0 +1,5 @@
+multinomial logistic regression (softmax reg)
+classification method that generalizes logistic regression to multiclass problems with more than 2 possible discrete outcomes
+-model that is used to predict probabilities of different possible outcomes of a categorically distributed dependent variable given independent var
+
+softmax regression replace sigmoid log fn by softmax fn

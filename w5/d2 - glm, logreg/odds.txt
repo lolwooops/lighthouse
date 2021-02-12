@@ -1,0 +1,18 @@
+odds win = 1/4
+-> 1 win, 4 losses (odds = 0.25 win)
+NOT the same as "odds ratio"
+
+odds calc from prob
+p(lose) = 1 - p(win)
+p(win)/p(lose) = odds(win)
+
+log-odds 
+makes negative and positive odds symmetrical around 0
+-easier to interpret
+-easier for statistic
+
+log of prob fn is called logit fn (basis for log reg)
+	log(p/(1-p))
+
+log odds is normally distributed
+

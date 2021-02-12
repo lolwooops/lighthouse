@@ -1,0 +1,77 @@
+decision trees and forests
+
+how to determine the split
+gini impurity
+	G=sum(p(i)*(1-p(i))
+tells us the probability of misclassifying an obs --> the lower the better
+
+
+regression trees
+
+decide on a continuous value
+instead of using gini, use regression values like mse
+
+
+decision trees 
+advantages
+-simple to understand and interpret
+-visualizable
+-can handle multiclass classification well
+disadvantages
+-tendency to overfit with over complex trees 
+	-pruning techniques
+-decision trees can be unstable - small variations in data might result in completely different tree generated
+	-ensembles
+-inherent instability - hierarchical structure
+(effect of error in top splits propagate down to all splits)
+-greedy alg - ea node is only locally optimal -> cannot guarantee globally optimal
+
+
+random forests
+(ensemble methods)
+
+taking sum of methods -> better result than individual alg
+
+fit diverse set of classifiers by injecting randomness in classifier construction
+-predict by taking avg of preedictions given by individual classifiers
+
+injecting randomness
+-data - build ea tree on bootstrap sample (sample drawn with replacement in training set)
+-features - consider random subset of features at ea split (randomforestclassifier)
+
+
+random forests
+-accuracy (usually more acc than d trees)
+-speed slower than dt but easily parallelize training bc all trees are indep of ea other
+-overfit - no depth limit -> overfit
+	-rf less likely to overfit
+-interpretability - decision trees more interpretable
+
+ensembling
+-weak learners are models that can be used as building blocks for designing more complex models
+-by combining several weak learners together, we can try to reduce bias/variance of weak learners
+-ensemble model could have better performance
+
+disadv of ensembling
+-increases computational time
+-decreases interpretability
+
+
+ensemble
+-averaging
+
+boosting
+-train weak model and agg to ensemble -> update training set based on current ens model results
+-add 1 learner at a time, addresses shortcomings of current ensemble
+-unlikely avging ensemble is created during training not after
+-train -> modify training set -> train -> modify.. etc
+
+stacking
+-training meta model to produce outputs based on outputs returned by some lower layer weak learners
+-technically avging but training a model over the avg
+-usually with geterogenous (different base model types)models
+
+
+
+adaboost
+

@@ -1,0 +1,103 @@
+training and evaluation
+
+data has 2 components - signal and noise
+goal of ml is to model the patternn, ignore the noise
+
+if the model is trying to fir the noise, it is overfitting
+-noise wont be the same on new data
+
+
+test train split 
+> good practice to shuffle data before splitting
+sklearn can shuffle 
+
+train on train set, eval on test set 
+
+bias can come from
+-time difference
+-one data source -> cause bias from multiple sources
+-difference data processing (didn't standardize the same way btw training and testing)
+-different data formats (images -> different camera)
+
+
+cross validation
+want to eval model on a dataset with little sampling bias 
+smaller datasets far more likely to suffer from sampling bias
+-want a big test set to get a realistic estimate of models perf without sampling bias
+-want a big training set so model can learn without sampling bias
+
+-> multiple fold CV
+
+
+high std bad
+
+
+
+hyperparameter tuning
+most models have parameters that we must set (not learned during training) -> hyperparameters
+eg. l2 regularization -> lambda
+most common method = trial and error
+-grid search, random search
+-bayesian optimization, genetic alg
+
+
+grid search with cv
+for each hp, specific list of values we want to try
+train a model with each combo of hp
+whichever combo with lowest loss will be picked
+
+hp selected to prevent overfitting - select oens that give best performance on some held out data
+-> freq combined with cv
+
+tuning => bias
+retune with cv
+
+
+
+
+evaluation 
+regression
+-mean squared error (l2)
+	-commonly used
+	-large errors have disproportionate impact
+	-units not intuitive
+	-task dependent (no max bound)
+-root mean squared error
+	-commonly used for eval but not for training loss
+	-errors sensitive to outliers
+	-units intuitive
+	-task dependent
+-mean abs error (l1)
+	-outliers ahve less impact
+	-units intuitive
+	-task dependent
+-coefficient determination (r2)
+	-measures proportion of var in Y explained by X
+	-commonly used for eval but not training loss
+	-intuitive interpretation
+	-task independent (ranges from 0-1)
+	-adj r2 variant adjusts stat based on # features
+
+	r2 = 1-unexplained var/total var
+	   = 1 = mse(model)/mse(baseline)
+
+classification
+-accuracy = #correct/#pred
+-confusion matrix (full detail about how model fails)
+	-true/false positive/negative
+from confusion matrix
+-recall (true positives/condition positive)
+	-want high recall when we dont want to miss any positive cond
+-false negative rate
+	-prob miss true cond
+-precision
+	-want high prec if model is going to trigger auto process
+	-eg, spam detection
+	-low precision may be ok in something like cancer diag,
+		-just run another test
+-f1 score
+	-combine both precision and recall into general metric
+	-useful for quickly comparing models
+	-variations that weight precisions/recall unequally
+
+

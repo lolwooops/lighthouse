@@ -1,0 +1,12 @@
+naive bayes
+-family of classifiers
+-probabilistic ml model used for classification tasks
+-based on bayes theorem
+	P(A|B) = P(A)P(B|A)/P(B)
+-assumes all variables in dataset are naive (not correlated)
+
+divide dataset into 2 parts - feature matrix, response vector
+
+
+gaussian naive bayes
+-continuous values associated with ea feature assumed to be normally dist

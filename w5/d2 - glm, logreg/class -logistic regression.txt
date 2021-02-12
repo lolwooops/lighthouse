@@ -1,0 +1,75 @@
+logistic regression
+
+weights code = coef_
+
+sign = hard predictions
+-if +, predict +1
+-if -, predict -1
+predicted probabilities = soft predictions
+-convert raw model output into probabilities, apply sigmoid instead of sign
+
+sigmoid function
+squishes raw model output from any number to range [0,1]
+
+	y' = 1/(1+e^-x)
+
+y' is the output of the logistic regression model
+-> output = probabilities
+hard predictions check sign of wtx
+threshold wtx = 0 corresponds to p = 0.5
+-> if our predicted pribability is above 0.5 then hard prediction is +1
+
+x here is also referred to as "log odds" because inverse of sigmoid states that x can be defined as the log of prob of 1 label divided by prob of 0 label
+
+	x = log(y/(1-y))
+
+sigmoid fn is a special case of "softmax fn"
+
+
+predict_proba 
+-soft prediction
+array[x,y] -> x% sure that it is class = 0, y% sure class = 1
+
+
+
+odds = ratio of success to failure
+
+
+
+model eval
+confusion matrix = visualization performance of alg
+-# of correct and incorrect predictions summed up classwise
+
+accuracy not always good choice
+precision - fraction of predicted positives that are actually positive
+recall 
+
+
+interpretability of linear classifiers
+-model has learned coefficient for each feature
+-features with bigger magnitudes, stat significance
+
+limitations of linear classifiers
+
+
+
+
+multinomial logistic regression
+-output = more than 2 classes
+multinomial -> no order
+
+one vs rest
+-turns k class classification into k binary classification
+-builds k binary classifiers; for ea classifier the class is fit against all other classes
+-ea gives prob of that class assuming to be positive using sig fn
+-normalize value across all classes
+-class with max value is prediction
+
+one vs one
+
+logres = one vs rest strategy for multiclass
+
+
+
+decision boundary = hyperplane
+coefficients -> controlling orientation/tilt of hyperplane and bias representing intercept - offset from origin

@@ -1,0 +1,44 @@
+1. explain dev cycle of ml proj
+
+covered most points, talked about ea point in detail
+discussion of diff steps
+
+
+2. normal dist
+
+normal dist -> commonly found in nature, things tend to fall into normal dist
+mean and median same, symmetric
+bell curve, 1-2-3sd 66
+how to test for normal dist
+-histogram
+-qqplot
+-shapiro test
+
+
+3. central limit theorem vs law of big numbers
+
+central limit -> "not to be confused with law of big numbers"
+
+
+4. supervised vs unsupervised
+
+-incorporate examples, but more business use case
+	-why is svm more appropriate here than not?
+	-examples round out interview more
+-keep simple
+
+
+5. how to define # clusters
+
+-elbow, silhouette
+-add - subjective decision
+-trial and error
+
+
+6. ml model doesnt give good predictions, will collecting more data help
+
+-is more data always better
+-how do you determine if more data is better
+	-approximation error -> error = data wont help
+-estimation, optimization
+-mention maybe linear regression not complex enough

@@ -1,0 +1,18 @@
+class imbalance
+
+classes in data not equ dist; typically in classification
+accuracy paradox 
+-acc measures only reflect underlying class distribution
+
+-collect more data
+-changing performance metric
+-resampling
+	-add copies of instances from under rep class called over samp
+	-delete instances from over rep class (under samp)
+-different alg
+-penalized models
+
+
+
+sampling bias
+sampling bias is a bias in which a sample is collected in such a way that some members of the intended population have lower sampling probability than overs -> bias sample (non random sample) of population in which all individuals are not equ likely to be selected

@@ -1,0 +1,32 @@
+an error estimation for hte model is made after training, better known as evaluation of residuals
+numberical estimate of diff in predicted and original = training error
+-but it is still possible that model is under/over fitting
+-> fixed by cv
+
+holdout method
+-remove part of training data and use it to get prediction from model trained on rest of data
+-suffers from high variance; not certain which data points end up in v set and result might differ btw sets
+
+kfold
+removing a part of data -> underfitting
+by reducing training data, risk losing important patterns/trends
+-> increases error from bias
+kfold divides data into k subsets, repeat holdout k times
+error esimation is avg over all k trials to get total effectiveness
+-significantly reduces bias (most data for fitting) and reduces variance (most data for validation)
+	-k = 5, 10 good
+
+stratified kfold
+might be a large imbalance in response var
+slight variation in kfold required - each fold contains same percentage of samples of ea target class as complete set
+-mean response value approx = in all folds
+
+leave p out 
+leaves p data points out of training sets
+- n-p samples used to train model, p points used for validation
+repeated for all p, then error is avg for all trials
+-> particular: p = 1 -> leave one out
+
+
+kfold cv in case of small amount of data
+for enough data, use combo of hold out and cv

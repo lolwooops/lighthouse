@@ -1,0 +1,31 @@
+generalized linear model
+flexible generalization of ols which allows for response variables that have error distribution models other than normal distribution
+
+glm generalizes by allowing linear model to be related to response variable via link function 
+- allow magnitude of variance of ea measurement to be a fn of its predicted value
+
+
+3 components in glm
+-linear predictor - linear combo of parameter b and x
+-link fn - links linear predictor and parameter for prob dist
+-probability dist - generates the observed variable y
+
+prediction curve is exponential; inverse of log link fn is exp fn
+
+statsmodel library for glm
+-endog, exog = X and y
+
+linear regression is a sub- of glm - uses identity link fn (linear predictor and parameter for prob dist are identical) and norm dist
+
+logit fn as link fn and binomial/bernoulli dist as prob dist
+-> logistic regression
+-as log fn returns values btw 0 and 1, it is a proper link fn for binomial dist
+
+
+custom glm
+typically gml use canonical link fn - uses typical combo of dist and link
+-normal dist -> identity fn
+-poisson dist -> log fn
+-binomial dist -> logit fn
+
+various link fn implemented in sm but need to write for more complex link fn

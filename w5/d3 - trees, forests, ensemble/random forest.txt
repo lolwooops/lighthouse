@@ -1,0 +1,13 @@
+random forest
+flexible ml alg that produces good result most of the time - most freq used alg bc of simplicity and diversity - can be used for both classification and regression
+
+create a bootstrapped dataset
+-randomly select samples from the original dataset
+-allowed to pick the same sample more than once
+create decision tree using bootstrapped, but only use random subset of variables at each step
+repeat x times - results in a wide variety of trees
+
+-> classify new data with all trees (out of bag dataset)
+proportion of samples incorrectly classified = out of bag error
+
+compare out of bag error btw trees, test different settings -> choose most accurate random forest

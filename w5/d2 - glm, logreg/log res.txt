@@ -1,0 +1,39 @@
+logistic regression
+-binary - categorical response only has 2 possible outcomes (sex)
+-multinomial logistic regression - 3 or more categories without ordering 
+-ordinal logistic regression - 3 or more categories with ordering (movie rating)
+
+linear regression hypothesis
+	h(x) = wTx
+logistic regression hypothesis generalizes using log fn
+	h(x) = g(wTx) where
+	g(z) = 1/(1+e^-z) #sigmoid function
+	--> h(x) = 1/(1+e^-wTx)
+
+log function has asymptotes at 0 and 1 (x = 0, g(x) = 0.5)
+
+
+logistic regression decision boundary
+manual prediction -> compute vector product wTx
+if result of product > 0, predict 1
+
+DB can be non-linear functions
+
+
+logistic regression parameter (w)
+-solve optimizaiton problem
+
+
+adv
+-efficient, straightforward
+-low cmp power
+-easy implement, easy interpret
+-don't need scaling of features
+-provides probability score for obs
+
+disadv
+-not able to handle large # of categorical features
+-vulnerable to overfit
+-cant solve non linear problem with log reg - req transformations of non linear features
+-will not perform well with indep var that are not correlation to target 
+-heavily affect by collinearity

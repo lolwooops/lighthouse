@@ -1,0 +1,32 @@
+support vector machine
+used for both classification and regression
+more commonly used for classification
+
+
+support vector classifiers (svc)
+use edge points in cluster - midpoint = threshold
+distance btw threshold and edge point = margin
+
+largest margin possible = max margin classifier
+MMC low bias high var -> doesnt perform well
+very affected by outliers
+
+-> allow misclassifications (higher bias but lower var)
+allowing misclas = soft margin
+
+use cross valid to determine how many misclassifications and obs inside marginobs on edge and within margin = support vectors
+
+
+support vector machines
+-start with data in low dim
+-move data to higher dim
+-find svc that sep higher dim into 2 groups
+
+kernel fn - polynomial, radial
+polynomial kernal systematically increases dim by setting d (poly degree) and relationships btw ea pair of obs used to find classifier
+find d by cv
+
+kernal trick
+-kernel fn only calc relationships btw pair of points as if they are in higher dim without actually transforming the data - reduces comp req
+
+svm move data into higher dim space finding high dim svc that can classify obs

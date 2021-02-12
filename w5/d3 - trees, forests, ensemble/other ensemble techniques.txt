@@ -1,0 +1,148 @@
+ensemble methods
+
+-use multiple learning algorithms to obtain better predictive performance than individually
+
+paradigm where multiple models (weak learners) are trained to solve the same problem and combined t oget better results - when weak models are correctly combined, we can obtain more acc/robust models
+
+single weak learner
+-choice of model - important for good results; depends on quantity of data, dimensionality of space, dist hypothesis
+-low bias + low variance = good model
+-> need enough degrees of freedome to resolve underlying complexity of data (higher df => high var less robust --> bias variance trade)
+weak learner -> too shit (high bias) or too much var(high df)
+
+ensemble -> weak learners are building blocks for more complex models by combining them
+-reduce bias AND variance by combining several of them
+
+most of the time, single base learning alg is used so weak learners are homogeneous trained in different ways -> ensemble = homogeneous
+-methods that use different types of base learning algs
+-heterogeneous weak learners -> hetero ensemble
+
+choice of weak learners should be coherent with the way mdoels are aggregated
+-if base models with low bias, high var chosen, it should be with an aggregating method that tends to reduce variance 
+-if base models with low var high bias, aggregate method reduce bias
+
+3 major methods of combining
+-bagging - often considers homogeneous weak learners, learns them independently from each other in parallel and combines them following some kind of deterministic averaging process
+-boosting - homogeneous weak learners, learns them sequentially in adaptive way (base model depends on previous ones) and combines them following deterministic strategy
+-stacking - heterogeneous weak learners - learns them in parallel and combines them by training a meta model to output a prediction based on the different weak models predictions
+
+bagging -> focus at lowering variance
+boosting + stacking -> less bias (could be variance reduced too)
+
+
+
+bagging
+in parallel methods, fit different considered learners independently from each other -> train them concurrently
+bagging produces ensemble model that is more robust than indiv
+
+bootstrapping
+-stat technique - generate samples of size b from an initial dataset of size N by randomly drawing with replacement b observations
+=> can be seen as drawn directly from try underlying data distributon and independently from each other
+---> can be considered as representative and independent samples of true data dist (almost iid samples)
+-requires N be large; capture real distribution, and bootstrap samples are not too much correlated
+
+bagging - want to fit several indep models and avg their predictions in order to obtain a model wiht a lower variance
+-> rely on good approximate properties of bootstrap samples
+
+-create multiple bt samples 
+-fit weak learner for ea sample 
+-agg them st we avg outputs
+since bt samples approx iid, so are learned base models
+--> avg weak learner outputs do not change the expected answer but reduce its variance
+
+regression 
+-outputs of indiv models can be avg to obtain output of ense
+classification
+-hard voting - ea model output = vote and class with majority of votes = output
+-soft voting - probabilities of ea class returned by all the models, avg probabilities and keep class with highest avg prob
+
+big adv of bagging = parallelized
+
+
+random forests
+-bagging method where deep trees with boostrap samples are combined to produce an output with lower variance
+-when growing ea tree, also sample over features and keep a random subset of them per tree -> trees are less correlated with ea other
+
+--> makes decision making process more robust to missing data
+
+
+
+boosting
+in sequential methods, different weak models are no longer fitted independently from ea other -> fit models iteratively such that training of model at a given step depends on models fitted before
+
+boosting
+boosting is a technique that consists in fitting sequentially multiple weak learners in adaptive way; ea model in seq fitted giving more importance to obs in dataset that were badly handled in prev models in seq
+-> ea new model focus its efforts on the most difficult obs 
+--> strong learner with lower bias (and maybe lower var)
+
+can be used for both reg and class
+base models often considered for boosting are models with low variance but high bias (eg shallow trees)
+-low var high bias weak learners are less computationally expensive to fit
+
+choose weak learners -> define seq fitting and aggregation
+
+
+adaboosting (adaptive boosting)
+define ensemble model as a weighted sum of L weak learners
+-> iterative optimisation process
+-add weak learners one by one, looking at ea iteration for best possible pair (coefficient, weak learner) to add to the current ensemble
+instead of optimising globally, approx optimum by optimising locally
+
+-updates obs weights in dataset
+-train new weak leaner with special focus to misclassified obs
+-adds weak learner to weighted sum
+	-better a weak learner performs, more contribution to strong
+
+
+gradient boosting
+casts problem into gradient descent problem
+-ea iteration, fit weak learner to opposite of the gradient of the currently fitting error wrt current ensemble model
+
+-set pseudo residuals equ to observations values
+-fit best possible weak learner to pr
+	-approx opposite of gradient wrt current learner
+-compute value of optimal step size (defines how much we update ens model in direction of new weak learner)
+-update ens model by adding new weak learner * step size
+-compute new pr 
+repeat n times
+
+adaboost tries to solve ea iteration the exact local optimisation problem (find best weak learner and coef to add to strong model) 
+gradient boost uses gradient descent approach -> easily be adapted to large number of loss fn
+
+--> gboost generalization of adaboost to arbitrary differentiable loss fn
+
+
+
+stacking
+learn several different weak learners and combine them by trianing a meta model to output predictions based on multiple predictions returned by weak models
+-define L learners to fit, meta model
+eg - choose knn, logreg, svm as weak -> neural network as meta
+
+-split training data into 2 folds
+-choose l weak learners and fit them to data of first fold
+-for ea l weak learner, make predictions for obs in 2nd fold
+-fit meta model on 2nd fold using predictions made by weak learners as inputs
+
+predictions on data used for training of weak learners are not relevant for training of meta model -> drawback = lose half of the data to train (half goes to base, half to meta)
+-> follow kfold cross training approach st all obs can be used to train the meta model
+-for any obs, prediction of the weak learners are done with instances of these weak learners trained on the k-1 folds that do not contain the considered obs
+--> consists in training on k-1 fold in order to make predictions on remaining fold; iteratively to obtain predictions for obs in any folds -> produce relevant predictions for ea obs 
+---> train meta model on these predictions
+
+mutli levels stacking
+1st layer - fit l weak learners
+2nd layer - fit m meta models
+3rd layer - fit a meta model that takes predictions from M models as inputs
+-adding levels can be data exnepsnve or time expensive
+
+
+
+
+
+-ensemble learning = multiple models are trained to solve the same problem, combined for better performance
+-main hypothesis = combine weak learners, obtain more acc/robust models
+-bagging - several instance of the same base model are trained in parallel (indep from others) on different bootstrap samples and then aggregated in avg
+-avg operation done over iid fitted models in bagging methods mainly allows us to obtain ens model with lower variance than components -> base models with low bias high var good for bagging
+-boosting, several instance of same base model train sequentially st ea iteration training current weak learner depends on how prev learner performs ondata
+-iterative strat allows us to get ens model wiht lower bias than components -> weak learners with low var high bias good for boosting
+-stacking methods different weak learners are fitted independently from ea other and meta model is trained on top of that to predict ouputs based on outputs returned by base models

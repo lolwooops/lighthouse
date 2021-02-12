@@ -1,0 +1,50 @@
+XGboost 
+special type of gradient boosting alg
+-popular because of its speed and accuracy
+-designed to be used with large datasets
+
+make initial prediction (default = 0.5)
+-residuals show us how good prediction is
+
+
+
+xgboost for regression
+
+xg boost uses unique tree -> xgboost tree
+each tree -> leaf
+all residuals go to that leaf
+quality/similarity score = ssr/(#resid+lambda (from regularization))
+
+gain = sum of leaf similarities - root similarity
+
+prune trees based on gain values with some chosen value gamma
+gain - gamma > 0 keep, otherwise drop
+keep root if keep branch
+
+with regularization (to reduce predictions sens to indiv obs)
+-similarities are smaller
+-gain smaller
+--> easier to prune trees
+--> prevents overfitting
+
+output value = sum of residuals/#res+lambda
+when lambda > 0, reduces amount that indiv obs adds to overall pred
+
+xgboost learning rate = e, default = 0.3
+
+new prediction = orig pred + e*output
+
+
+
+xgboost for classification
+
+again, initial pred = 0.5
+new formula for similarities
+sim = ssr/(sum(prev prob*(1-prev prob))+lambda)
+
+odds = 1/1-p
+logodds = log(1/1-p)
+-> initial log pred = 0
+
+new prediction = logodds(initial pred) + learning rate*output
+--> probability = e^logodds/1+e^logodds

@@ -1,0 +1,6 @@
+decision trees
+non parametric supervised learning used for classification and regression - learn data to approx curve with a set of "if then else" rules
+-builds classification/reg models in the form of a tree structure
+-breaks down a dataset into smaller and smaller subsets which an associated decision tree is incrementally developed
+result -> tree with decision nodes and leaf nodes
+
