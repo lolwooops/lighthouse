@@ -1,0 +1,65 @@
+containerization
+-virtualization that doesnt req full vm
+-portability, lightweigh, self contained environments
+-simplified versioning + dependency management
+
+write 2 things to docker volumes 
+-results (intermediate + final) and logs
+
+
+otool for improving deployment of predictive ml api - more portable
+
+
+
+
+
+
+-build flask app
+	-host set to 0.0.0.0
+-create requirements.txt file
+	pip3 list > requirements.txt
+
+building dockerfile
+-FROM ubuntu:latest
+-RUN sudo apt update -y 
+-RUN apt install -y python3-pip
+-COPY . /app
+-WORKDIR /app
+-RUN pip3 install -r requirements.txt
+-ENTRYPOINT ['python3']
+-CMD ['app.py']
+
+Finally, build the docker file by
+$ docker build -t simpleflask .
+
+
+$ docker ps -a
+$ docker images #view all docker images
+$ docker run -d -p 5000:5000 <docker_image_id>
+	#attached port 5000 of system to docker
+	#2nd 5000 is port of flask (default5000)
+$ docker ps -a
+
+
+
+
+Passing Arguments APP
+-build flask
+-$ pip3 list > requirements.txt
+-build dockerfile (look at prev example)
+-$ docker build -t passingarguments .
+-$ docker images
+-$ docker run -d -p 5000:5000 <docker_image_id>
+
+
+calling api
+-curl -X POST http://127.0.0.1:5000/predict -d 5
+
+import requests
+URL = 'http:127.0.0.1:5000/predict'
+data = '5'
+result = requests.post(URL, data)
+print(f"Result={result.text}")
+
+
+

@@ -1,0 +1,54 @@
+deployment of ml models
+
+rest apis
+
+web scraper 
+acts like a web browser
+
+extracted data needs extensive cleaning
+-expensive (use beautiful soup)
+new extraction applications take a lot of time 
+slower than api
+
+rest api
+-representation state transfer characteristics
+application programming interface
+
+client server - http based - stateless server
+
+
+representation
+json, text for structured data
+[] for arrays, {} for objects (close to df)
+
+xml
+hierarchical desp of tagged data
+
+
+
+endpoint is requested url
+method type of req sent to sever
+-GET
+-POST
+-PUT/PATCH
+-DELETE
+
+
+
+
+FLASK
+micro web framework written in python - creates rest api that allows sending data, receiving preds as response
+
+need to deploy model 
+-can try to get best model possible in notebook or script
+-> must hand it in in a way that client can run it easily
+-> flask is a micro web framework written in python, can create rest api that allows sending data and receive predictions
+
+cons of flask
+-allows to use low quality code -> bad web application
+-scalability - handle reqs one at a time (slow)
+-modules -> 3rd party involvement = security breach
+
+
+
+tmux

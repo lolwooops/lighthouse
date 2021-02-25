@@ -1,0 +1,14 @@
+spark - computing engine + set of libraries for parallel data processing
+
+hadoop -> linear processing of huge dataset
+spawk -> fast performance, iterative processing, real time analytics, graph processing, ml
+
+can choose multiple languages
+dataframe abstraction wiht obj oriented methods for transformations, joins, filters
+easy conversion (eg, topandas())
+
+
+difficult to t une and maintain
+debugging - memory errors and errors within user defined fn hard to track down
+cant guarantee max parallelism
+

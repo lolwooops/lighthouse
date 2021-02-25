@@ -1,0 +1,6 @@
+pipelines
+can be used to chain mult estimators (data processing and modeling steps) into one
+-only have to call fit and predict once
+-can do grid search over all estimators in pipeline at once
+-help avoid leaking stats btw train and test
+all obj except last one must be transformers (have a .transform() method)

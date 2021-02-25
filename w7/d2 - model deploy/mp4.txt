@@ -1,0 +1,42 @@
+so taking a look at what data is available; our objective is to predict our target variable loan status. 
+
+right off the bat there are some variables here that look like they should affect our prediction. for example, the two income features seem like they should be included; a higher income means that they are more able to pay back the loan. Loan amount should also affect if the loan goes through - higher amount means harder to pay for but more money for the bank - this is where the other features come in where they'd do some sort of risk analysis. obviously credit history would be a big factor in predicting loan status - no credit history means the bank knows nothing about you -> bigger risk
+
+moving to data exploration
+both applicant income and loan amounts are right skewed. given the low income numbers, assume that this is monthly income. most interesting is that the distribution for both approved and unapproved loans have the same respective distributions as applicant income and loan income. Which persists even after log and boxcox transformations. Looking at a scatterplot between applicant income and loan amount, we see that there are no distinct clusters between loan status. Tells us that the affect these features have on approval is negligible or very nested. 
+
+looking at some other features, we again see that education and property area really have no apparent affect on approval. the only feature that was really obvious is loan status, and even then, it seems like it is only a good predictor for people getting approved; the no's are a mixed bag. 
+
+so can't just take other features out, keep them in to see if the model can predict nos better
+
+just to hammer it in, scatterplot shows no real clusters between no real distinction between approval except for credit history
+
+
+moving onto modelling
+started off with a random forest classifier; thought that shallow trees with random features could capture nos better
+resulted in something like a .45 recall and .6 f1 score for predicting nos and .9 recall .8 f1 for predicting yes
+
+so pretty imbalanced
+
+tried using xgboost 
+this alg traded a small amount of accuracy for predicting nos for a big increase in predicting yes -> .4/.54 recall/f1 nos for .98/.85 recall/f1 yes
+still imbalanced so tried smote, randomundersampling, and a combination of both
+was only able to increase predictions for no's a little bit, up to .65 f1 for a small trade off accuracy of yes's
+but accuracy went up overall
+
+then i ran a randomsearchcv to narrow down some of the hyperparameters of the pipeline and used gridsearch to finish it off
+given these parameters, increased accuracy a couple percent
+
+
+rf with smote + randomundersampling performed about relatively the same
+
+i also tried modelling without transforming the income and loan amount to see if that helped - it was very very good at predicting yes - recall 99%
+for nos, precision was very good - 95%, but recall dropped to 40%s and below
+
+it is interesting to note that after hypertuning, the model tries to increase accuracy by predicting yes's over nos. which it does but predictions become more unbalanced than before, which is what we don't want. 
+
+moved the model to the cloud using winscp and pulled prediction probabilities
+
+one major thing i learned was that deploying using flask is much much simpler using pipelines than when not. writing the application and the supporting files is much easier and takes a lot less troubleshooting
+
+the next move in improving the model would be to start running backward elimination on the features and see if increasing the noise would help the model predict nos. otherwise we would probably need more exogenous features (and or more data)

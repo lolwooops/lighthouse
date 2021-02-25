@@ -1,0 +1,10 @@
+2 types of deep learning frameworks
+-low level - mathematical operations and neural network primitives are implemented (tensorflow, pytorch)
+-high level - low level primitives used to implement neural network abstractions (models and layers) (keras)
+
+TensorFlow is low-level and Tensorflow 2.0 uses Keras as its high-level API through tf.keras
+
+
+
+
+

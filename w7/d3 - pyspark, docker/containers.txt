@@ -1,0 +1,24 @@
+containers
+
+isolates application and dependencies -> can run anywhere
+
+contrainers package up user space -> more lightweight than VM
+(VM = container + kernel + virtual hardware)
+
+docker
+-ease of use
+-speed
+-docker hub
+-modularity, scalability
+
+
+engine - runtime and tooling
+-manages containers, images, builds
+
+client = UI
+daemon - executes commands sent to docker client (building, running, distributing)
+volumes - data part of container, initialized when created
+-> destroy, update, rebuild container, data volumes untouched
+
+docker creates network interfae so container can talk to lhost + attach IP to container + execute processes
+

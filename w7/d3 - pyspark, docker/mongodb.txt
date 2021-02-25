@@ -1,0 +1,24 @@
+mongodb - document db 
+distributed scale out architecture
+comprehensive cloud based platform 
+transactional, operational, analytical workloads at scale
+
+postgres - open source 
+
+
+mongo -> distributed for modern transactional/analytical application working with changing multi structured data
+-reshape data 
+-scale in terms for traffic/size of data, distribution needed
+-multi cloud
+
+stores data as documents in binary representation (bson (binary json); documents are self describing
+new field -> can be created without affecting db
+
+-store data in any structure - ea field can be indexed and searched
+-addes elements to duc model and query engine to handle both geospatial + time series tagging of data
+-bson includes data types nto rep in json (datetime, int, long, date, floating point, byte)
+-schema validation -> apply governance and data quality controls
+
+mongo uses mql
+query perf can be accelerated by creating indexes on fields in doc and subdocs
+

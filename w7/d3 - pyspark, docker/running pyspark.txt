@@ -1,0 +1,73 @@
+$ docker run -p 8888:8888 jupyter/pyspark-notebook
+
+To stop your container, type Ctrl+C in the same window you typed the docker run command in.
+
+
+You can run your program in a Jupyter notebook by running the following command
+
+	docker run -p 8888:8888 jupyter/pyspark-notebook
+
+You need to use that URL to connect to the Docker container running Jupyter in a web browser. Copy and paste the URL from your output directly into your web browser. Here is an example of the URL you’ll likely see:
+
+	$ http://127.0.0.1:8888/?token=80149acebe00b2c98242aa9b87d24739c78e562f849e4437
+(use in browser)
+
+To connect to the CLI of the Docker setup, you’ll need to start the container like before
+
+	docker run -p 8888:8888 jupyter/pyspark-notebook
+
+Once you have the Docker container running, you need to connect to it via the shell instead of a Jupyter notebook
+
+	$ docker container ls
+
+This command will show you all the running containers. Find the CONTAINER ID of the container running the jupyter/pyspark-notebook image and use it to connect to the bash shell inside the container:
+
+	$ docker exec -it 4d5ab7a93902 bash
+
+
+
+
+import pyspark
+sc = pyspark.SparkContext('local[*]')
+
+txt = sc.textFile('file:////usr/share/doc/python/copyright')
+python_lines = txt.filter(lambda line: 'python' in line.lower())
+
+with open('results.txt', 'w') as file_obj:
+    file_obj.write(f'Number of lines: {txt.count()}\n')
+    file_obj.write(f'Number of lines with python: {python_lines.count()}\n')
+
+--> saves spark-submit output to file
+
+
+
+
+Another PySpark-specific way to run your programs is using the shell provided with PySpark itself. Again, using the Docker setup, you can connect to the container’s CLI as described above. Then, you can run the specialized Python shell with the following command:
+
+	$ /usr/local/spark/bin/pyspark
+
+Now you’re in the Pyspark shell environment inside your Docker container, and you can test out code similar to the Jupyter notebook 
+
+
+As you already saw, PySpark comes with additional libraries to do things like machine learning and SQL-like manipulation of large datasets. However, you can also use other common scientific libraries like NumPy and Pandas.
+
+You must install these in the same environment on each cluster node, and then your program can use them as usual. Then, you’re free to use all the familiar idiomatic Pandas tricks you already know.
+
+
+
+After you have a working Spark cluster, you’ll want to get all your data into that cluster for analysis. Spark has a number of ways to import data:
+
+	Amazon S3
+	Apache Hive Data Warehouse
+	Any database with a JDBC or ODBC interface
+
+
+
+
+
+
+
+
+
+
+
