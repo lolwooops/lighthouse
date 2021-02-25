@@ -1,0 +1,15 @@
+cmd
+docker run  --rm  -p 8888:8888  -v <path with dl files>:/home/jovyan/work/     jupyter/tensorflow-notebook 
+
+
+
+Replace this: <path with dl files> with the place where you want to work on deep learning tutorials in activities.
+
+docker run: This specifies that we want to create a new container from our image.
+--rm: This causes Docker to automatically remove the container when we close it. It helps us not to have many containers of one image running.
+-p 8888:8888: This redirects our notebook from port 8888 inside Docker to port 8888 on our local machine. Without this, we wouldn't be able to access the running notebook.
+-v <path with dl files>:/home/jovyan/work/: This points files we create in the container to our local disk.
+
+Once it is running, we can access the environment from the browser using this URL: http://127.0.0.1:8888/lab?.
+
+token found in terminal
