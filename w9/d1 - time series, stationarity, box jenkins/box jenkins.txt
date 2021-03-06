@@ -1,0 +1,65 @@
+AR: Autoregression. A model that uses the dependent relationship between an observation and some number of lagged observations.
+I: Integrated. The use of differencing of raw observations (i.e. subtracting an observation from an observation at the previous time step) in order to make the time series stationary.
+MA: Moving Average. A model that uses the dependency between an observation and residual errors from a moving average model applied to lagged observations.
+
+p: The number of lag observations included in the model, also called the lag order.
+d: The number of times that the raw observations are differenced, also called the degree of differencing.
+q: The size of the moving average window, also called the order of moving average.
+
+Identification. Use the data and all related information to help select a sub-class of model that may best summarize the data.
+Estimation. Use the data to train the parameters of the model (i.e. the coefficients).
+Diagnostic Checking. Evaluate the fitted model in the context of the available data and check for areas where the model may be improved.
+
+
+
+1. Identification
+The identification step is further broken down into:
+
+Assess whether the time series is stationary, and if not, how many differences are required to make it stationary.
+Identify the parameters of an ARMA model for the data.
+
+1.1 Differencing
+Below are some tips during identification.
+
+Unit Root Tests. Use unit root statistical tests on the time series to determine whether or not it is stationary. Repeat after each round of differencing.
+Avoid over differencing. Differencing the time series more than is required can result in the addition of extra serial correlation and additional complexity.
+
+1.2 Configuring AR and MA
+Two diagnostic plots can be used to help choose the p and q parameters of the ARMA or ARIMA. They are:
+
+Autocorrelation Function (ACF). The plot summarizes the correlation of an observation with lag values. The x-axis shows the lag and the y-axis shows the correlation coefficient between -1 and 1 for negative and positive correlation.
+Partial Autocorrelation Function (PACF). The plot summarizes the correlations for an observation with lag values that is not accounted for by prior lagged observations.
+
+The model is AR if the ACF trails off after a lag and has a hard cut-off in the PACF after a lag. This lag is taken as the value for p.
+The model is MA if the PACF trails off after a lag and has a hard cut-off in the ACF after the lag. This lag value is taken as the value for q.
+The model is a mix of AR and MA if both the ACF and PACF trail off.
+
+
+2. Estimation
+Estimation involves using numerical methods to minimize a loss or error term.
+
+
+3. Diagnostic Checking
+The idea of diagnostic checking is to look for evidence that the model is not a good fit for the data.
+
+Two useful areas to investigate diagnostics are:
+Overfitting
+Residual Errors.
+
+3.1 Overfitting
+The first check is to check whether the model overfits the data. Generally, this means that the model is more complex than it needs to be and captures random noise in the training data.
+
+This is a problem for time series forecasting because it negatively impacts the ability of the model to generalize, resulting in poor forecast performance on out of sample data.
+
+Careful attention must be paid to both in-sample and out-of-sample performance and this requires the careful design of a robust test harness for evaluating models.
+
+3.2 Residual Errors
+Forecast residuals provide a great opportunity for diagnostics.
+
+A review of the distribution of errors can help tease out bias in the model. The errors from an ideal model would resemble white noise, that is a Gaussian distribution with a mean of zero and a symmetrical variance.
+
+For this, you may use density plots, histograms, and Q-Q plots that compare the distribution of errors to the expected distribution. A non-Gaussian distribution may suggest an opportunity for data pre-processing. A skew in the distribution or a non-zero mean may suggest a bias in forecasts that may be correct.
+
+Additionally, an ideal model would leave no temporal structure in the time series of forecast residuals. These can be checked by creating ACF and PACF plots of the residual error time series.
+
+The presence of serial correlation in the residual errors suggests further opportunity for using this information in the model.

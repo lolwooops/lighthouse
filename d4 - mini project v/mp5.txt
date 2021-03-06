@@ -1,0 +1,32 @@
+not really sure how to present this project, since all of it is text
+
+project flow is basically like any other project - put data in a useable format - in this case the whole dataset is a list of lists where each english french sentence pair is its own list
+preprocess - just followed the flow we learned in class
+so got rid of symbols, lower cased everything
+
+tokenized, padded, encoded outputs 
+
+created a first model using a sequential structure
+so an embedding layer that compresses the data for the encoder lstm to take in, and a repeat vector to unsquish, then the decoder lstm and a dense layer for classification
+it basically started overfitting right away - you can see the validation loss started going up instead of down even while the accuracy was marginally increasing
+not exactly sure how it gets 50% accuracy when the output is this bad
+
+2nd try, used the same model structure but i recalled in class that we mentioned how text could be seen as a time series 
+-use time distributed layer over the dense layer
+from the keras documents: what the time dist layer does is it applies a layer to every sample as an input
+improved better than the last model but just the same results
+
+so not good results with these models even though theyre only trained on a small number of epochs - maybe deeper layers or more epochs would perform better but these models didnt even output the right number of words - each epoch was taking 6m+ so pretty time consuming
+
+wanted to see what a good example would be 
+found a walkthrough where they created a model that took 2 input layers 
+the first input layer is the encoder where it has its own embedding and lstm layer, and the 2nd layer takes the output from the encoder and uses the french to train on 
+both would then feed a decoder lstm and then a dense layer for classification
+
+i think this model ended up achieving like 90%+  val accuracy or something, and as you can see, at least it outputs actual words
+
+so these predictions are on random pieces of the original set
+theres definitely some overfitting going on, since most of the translations ive tested had the same starts and ends
+but the sections of it would be somewhat along the lines of what the original french sentence is
+
+so definitely not from my brain, just a scuffed version of the walkthrough model, but just wanted to explore a structure that would work

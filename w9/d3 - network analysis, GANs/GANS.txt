@@ -1,0 +1,12 @@
+GANs are a type of unsupervised learning trained via self supervised learning
+-main use case = classify whether something is real or not (eg fraud identify)
+involdes 2 sub models - generator -> generates new examples, discriminator -> classifying generated examples are real from domain or fake from generator model
+
+generator = forger - learns distribution of classes
+discriminator = investigator - learning boundaries btw classes, formal shape of dataset
+
+GANs - keyadvantages
+-solve generating data 
+-no human supervision
+
+

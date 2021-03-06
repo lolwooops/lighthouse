@@ -1,0 +1,44 @@
+time series
+
+for ml - predictions made for new data when actual outcome may not be known - future being predicted but all prior obs are treated equ
+
+for ts - adds explicit order dependence btw obs
+-time = constraint and structure providing info
+
+future is completely unavailable and must be estimated from what has already happened
+
+
+components of time series - level, trend, seasonality, noise
+
+concerns of forecasting
+-how much data available
+-time horizon of predictions req (short med long)
+-can forecasts be updated freq over time or must they be static
+-temporal freq are forecasts req
+
+data provided at freq too high/unevenly spaced requires resampling
+outliers bad
+missing - interpolate/impute
+
+
+irregular time series = data generated as burst/varying time intervals (account deposits from atm)
+
+only 1 variable varying over time = univariate time series
+multi = mutlivariate time series
+
+
+deterministic time series
+-expressed explicity - no random
+-described for all time in terms of a taylor series exp provided all of its derivatives are known at some arb time
+
+nondeterministic time series
+cannot be described by analytic exp
+-info necessary to describe not avail
+-nature of generating process is random
+
+
+stationarity
+statistical properties (mean var autocorr) do not depend on time
+-trend
+-cyclicality
+-seasonality

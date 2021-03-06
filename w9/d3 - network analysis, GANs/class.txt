@@ -1,0 +1,116 @@
+graph analysis, generative adversarial networks (gans)
+
+undirected
+directed
+cyclic - can start off in a node and go back to that node
+acyclic
+weighted/unweighted
+sparse - 
+dense
+
+graph analysis
+-recommender systems
+-real time  fraud
+-supply chain logistics
+-influencer analysis
+-grid and network quality of service (weaknesses in power/water grids)
+-optimizing routes - airlines
+
+can give attributes to edges - multigraph
+
+
+
+clustering coefficient
+people who share connections in a social network tend to form associations - tendency in social network to form clusters
+-local clustering coefficient - fraction of pairs of the nodes friends that are connected with ea other
+
+network influencers - analysing importance of any given node in the network
+degree centrality - the most popular or more liked usually are the ones with more friends - degree centrality = measure of number of connections a particular node has in the network
+
+eigenvector centrality
+-measures importance of a node in a graph as a fn of importance of its neighbors
+-highly important nodes have a higher ev centrality 
+
+betweeness centrality
+-quantifies how many times a node comes in the shortest chosen path btw other nodes (centrality of control)
+-high btw = significant role in communication/information flow in network
+
+
+
+GANS
+consists of 2 nn trying to outwit each other
+2 networks are known as generator/discriminator
+
+auto encoders
+-a nn that encodes data into lantent space or onto a set of latent variables
+-space usually lower dim then input/output space
+	-6 -> 4 -> 2(latent space) -> 4 -> 6
+	-encoder -> latent space -> decoder
+compressed representation of input -> reproduce input sample
+
+auto encoders reconstruct an image and denoise it
+- generates parameters (mean, std) that define a dist in hidden layer or latent space -> used to draw and create new outputs
+-variational AE  (generative model)
+
+
+alg behind AE
+-latent space - encoder + decoder 
+- x -> q(z); z~q(z), q(z) -> x
+
+GANS are the evolution of graphical models
+
+generator = decoder from AEs
+discriminators = classfication neural network
+
+
+GAN analogy - game theory
+
+
+GAN cost fn
+2 networks in GAN are trying to outplay ea other - adversarial
+both are trying to optimize opposite things - the 2 cost fns need to be opposites
+
+discriminator cost
+-2 classes that a discriminator is trying to predict (real, fake)
+binary classification problem -> use entropy loss fn
+-discriminate btw real and fake images - minimizes negative log likelihood
+	J(d) = -[t logy + (1-t)log(1-y)]
+
+generator cost 
+generator wants to fool the discriminator - maximize discriminator cost
+	J(g) = -J(d)
+
+
+supposed dis is very succ at telling t he diff btw real and fake
+problematic btw loss of g changes in a direction proportional to gradient
+-when disc is too good, generator improvess less and less
+
+use new generator cost
+-instead of a target 0 for fake images, gen just wants the target to be 1 
+	J(g) = -E{logD(G(z))}
+-2 cost fn are no longer opposites
+*** they have a 0 sum
+
+train disc - train gen 2,3 times - repeat
+
+
+-feed generator z (latent variable generated from uniform dist) - generator will use z to generate fake samples xhat
+feed real samples x and xhat to disc 
+the two compete to fool disc; optimize both cost fn
+
+DCGAN (deep conv gan)
+generator is CNN and disc is CNN
+uses batch normalization which means normalizing data at every layer in neural network
+does not use pooling layer to reduce dimensions (just uses bigger stride of 2)
+	-conv - conv - conv - out
+
+
+transpose conv
+-opposite of conv layer
+-go from smaller size input to a larger image (regular conv = image -> same size or smaller)
+-takes downsample and upsamples
+
+batch normalization
+-weights*X + bias
+-batch norm
+-activation fn

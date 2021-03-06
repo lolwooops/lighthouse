@@ -1,0 +1,59 @@
+SNA
+-building a network  - represent network? what are nodes/edges
+-tie strength - how to identify strong/weak ties in network
+-key players - identify strong/weak nodes in network
+-cohesion - measures of overall network structure
+
+directed network - displays who contact ea other
+undirected network - who knows who
+-adjacency matrix becomes symmetric
+
+tie strengths - weights
+-freq of interaction
+-number of items exch
+-indiv perceptions of strength of relationship
+-costs of communication or exch (distance)
+-combinations
+
+preferential attachment
+-property of networks where during evolution and growth in time, great majority of new edges are to nodes with an already high degree - degree of these nodes thus increases disproportionaltely, compared to most other nodes in the netowrk
+--> result is a network with few very highly connected nodes and many nodes with low degree - long t ailed degree distribution
+-populatiry
+-quality
+-mixed
+
+
+graph theory alg
+centrality
+-degree, betweenness, closeness
+degree - count of how many edges are connected to each node - node with high degree centrality (high # edges) = highly active node - eg. busiest airport
+-assigns importance score based on # links
+-how many direct - one hop - connections each node has
+-finding connected individuals
+
+betweenness centrality - measurement how often particular node lies on shortest path btw 2 other nodes - high btwness = removing node increases distance btw other nodes
+-measures # times a node lies on shortest path btw other nodes
+-which nodes are bridges btw nodes in a network
+-for finding indiv who influence flow around a system
+
+cloeness - measure of proximity of node to other nodes - high closeness can broadcast info quickly - used in studies to recognize indiv in positions to control info and resources within org
+-scores each node based on closeness to other nodes
+-calcs shortest paths btw all nodes then assigns ea node a score based on sum of shortest paths
+-for finding indiv best placed to influence the entire network most quickly
+
+eigencentrality
+-measures nodes influence based on # links it has to other nodes in netwrok - also takes into account how well connected a node is - how many links their connections have etc
+-by calc the extended connections of a node - identify nodes with influence over whole network
+-good allaround SNA score 
+
+page rank
+-variant of eigencentrality - assign nodes scores based on their connections and their connections' connections
+-also takes link direction and weight into account so links can only pass influence in one direction and pass diff amounts of influence
+-measure uncovers nodes whose influence extends beyond their direct connections into wider network
+-takes into account direction and connection weight, can be helpful for understanding citations and authority
+
+
+
+
+
+

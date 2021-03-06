@@ -1,0 +1,109 @@
+time series
+
+rows have some sort of order (time)
+dont want model dependent on date, just order
+
+indep var is the dep var
+
+automatic ground truth - use a window to predict another window
+
+time series analysis (eda)
+-extract stat,characteristics
+-autocorrelation
+-trend
+-seasonality
+-whitenoise
+
+time series forecasting
+-predict future from the past
+
+
+
+moving avg
+
+preprocessing
+smoothing/denoising
+-can see trends better by avg out noise
+
+feature engineering
+-moving avg (past 3 days)
+-y(t-1)/y(t-10) - ratio of how it changed in the past 10 periods/trend in past 10 periods
+
+for prediction
+only good for local short term predictions
+
+level = mean
+trend - can include level 
+seasonality
+-repeating patterns of a time series
+
+data - trend - seasonality = residual
+remaining variation not captured by time components
+
+additive model
+-- y = level + trend + seasonality + residual
+
+know period -> avg chunks
+
+multiplicative model
+-- y = level*trend*seasonality*residual
+
+
+a time series is stationary if its statistical properties are constant over time
+--> no trend or seasonality component
+-most classical time series models assume stationarity
+
+checking for stationarity
+-look at decomp plot
+-constant stats (histogram, mean, variance of diff segments)
+-smoothing to identify trned in noisy data
+-hypo testing
+	-aug dickey fuller test (null = data is nonstationary)
+
+
+stationarity
+decomposition - techniques to model then remove seasonality/trend
+differencing - subtracting lagged versions of the series to remove trend (can do this multiple times = differencing order) - too many times can introduce new correlations
+use a model that can handle non stationary data (rnn)
+	-hard to interpret predictions
+
+
+shift time series - correlation with itself
+the bigger the shift, the less correlation
+--> autocorrelation
+
+partial autocorrelation = correlation of a time series with lagged versions of itself unaccounted for by prior lagged obs
+
+
+arima  +box jenkins
+AR + I + MA
+I = integration (differencing) - y(t) = y(t)-y(t-1)
+AR = autoregression
+-predict y(t) by using p numbers of y(t-p)
+-pick p after whcih partial autocorrelation is no longer significant 
+MA = moving avg
+-using past errors of previous y
+	predict y(t) using q numbers of e(t-q)
+-pick q after which autocorrelation is no longer significant
+	-# of lags req to remove all autocorrelation
+
+ARIMA 
+y(t) = reg(y(t-i)) + reg(e(t-j))
+picking arima parameters
+-keep differencing until stationary test passes to pick d
+-look for no sig cutoff in pac to pick p
+-look for no sig cutoff in ac to pick q
+
+
+box jenkins - iterative 3 step approach to modeling time series
+assumption = data can use modeled with arima
+1. idenfitication - use data and stats to select arima pdq
+-train parameters (fit model)
+2. diag checking - eval model residual/errors and overfitting
+-residual errors should have no temp structure after modeling
+	-hist of res should be 0 gaussian white noise
+	-ac and pac should be 0 for all lags
+-model should not be overfitting
+	-checking performance on unseen test set
+	-if overfitting, fit excellent for training but bad for test
+

@@ -1,0 +1,16 @@
+facebook prophet
+
+yt = gt + st + ht + et
+(trend + seasonality + holidays\
+
+define cap or max achieveable point
+define model (linear or log)
+
+trend model for g(t)
+growth model = g = C/1+e^-k(t-m)
+
+multiple seasonality available, default = false 
+
+
+mape - expresses error as percentage
+
