@@ -1,0 +1,77 @@
+deep learning
+
+neural network
+-consists of units (basically a number)
+-dependencies btw units
+	-inputs -> parameters -> intermediate -> ... output units
+-not a lot of assumptions
+	-can represent any function (flexible)
+-as network gets deeper (more layers) -> very good performance
+
+modelled after the brain
+
+
+
+high dimensional unstructured data
+
+very little preprocessing/feature engineering
+
+
+double descent phenomenon
+LOTS LOTS LOTS of features -> good performance
+
+
+massive datasets
+-larger function spaces (deep neural networks) require more data
+-more functions can be expressed, more parameters to learn, more data needed to learn them
+
+
+deep neural network
+computation graphs
+fully connected layers (linear reg is a special kind)
+	-every node is connected to every previous node
+multi layer perception -> linear regression (Y = XW*)
+	-apply nonlinear fn at every node -> universal fn approx
+nonlinearities - common fns
+-relu (typically in intermediate)
+	-works well in practice
+	-computationally efficient
+-sigmoid (typically outputs)
+	-outputs btw 0,1
+	-vanishing gradients
+	-not 0 centered
+-tanh (typically outputs)
+	-outputs btw -1,1
+	-zero centered
+	-vanishing gradients
+-softmax 
+	-outputs sum to 1 (good for probs)
+	-less useful for hidden layers
+
+
+universal approx theorem
+nn with 1 hidden layer can approx any fn if the width of network (# of hidden layers) can be large
+-networks that deep are much more effective at learning + converge to better solutions
+corresponding approx theorem for depth as well
+
+
+architecture decisions
+-how many layers
+-what layer fns
+-how many units
+
+typically deeper = better
+different architecture for different data types
+minor decisions = hyperparameters (units, layers)
+
+
+
+training deep neural networks
+gradient descent, loss fns
+loss fn wrt parameters, derivative = gradient
+
+
+packages in python
+-pytorch
+-tensorflow
+-keras
