@@ -1,0 +1,61 @@
+deep learning and convolutional neural networks
+
+neural network -> x(l+1) = h(W(l)x(l)+b(l))
+W = matrix of parameters, b = vector of parameters
+x0 = inputs, xl = outputs; L-1 = # hidden layers
+h = activation fn
+
+deep learning is a subfield of ml concerned with algorithms inspired by the fn of the brain
+
+cnn 4+ layers
+-feature learning layers + classitication layers
+
+type of dl alg
+-take an image as an input
+-learns features of image through filters
+-identify important obj present in image
+
+cnn outputs usually probabilities
+-special -> reduce # of parameters in dn network with many units wihtout losing too much quality of model
+-image, pixels close to each other usually have same type of info
+
+
+
+cnn
+-split image into square patches using moving window approach
+-train multiple smaller reg models at once (each reg model receives a square patch as input) -> training filters
+-ea reg models work is to learn to detect a specific kind of pattern
+
+-performs similarly to ordinary fully connected nn
+->have weights and biased learned from input
+-every neuron connected in network receives an input and performs a dot product
+-fn at the end that consists of scores that we obtain from various layers
+-loss fn at the end to evaluate performance
+
+
+input -> convolutions -> feature maps -> subsampling -> f.maps -> convolutions -> f.maps -> subsampling -> fully connected -> map
+
+more practical than 
+-no linear arrangement of neurons 
+cnn neurons have structure of three dimensions -> length width height
+
+
+
+architecture
+-input - images with dimensions (l w d) (depth = # of channels (rgb))
+-conv layer - computes dot product btw weights of neuron and region of input image -> 32x32x12 denoting 12 filters nn uses
+-relu layer (activation fn to resulting dot product)
+-POOLing layer -> down samples spatial dimensions of image (w h)
+-fully connected -> compute class score, final volume of 1x1xn (n = # of categories to predict)
+
+
+convolution
+-ea filter of first payer slides across input image and convlution is computer at ea iteration
+
+pooling
+-does not have parameters to learn
+-contributes to increased accuracy of model and improves speed of training by reducing numbero f parameters
+
+RELU -> normalization
+-new convolved matrix, anything negative is turne to 0 (removes unnecessary noise)
+

@@ -1,0 +1,8 @@
+many less traditional social networks:
+
+The set of individuals with whom one makes regular money transactions.
+The set of people with whom one is regularly on the phone.
+The set of people with whom one regularly exchanges gifts (e-commerce).
+The set of people with whom one shares media content.
+
+The main difference between Network (Graph) Analysis and a traditional ML approach is that in classic ML, we look at different observations independently. In Graph Analysis, we look at observations through the relationships among them.

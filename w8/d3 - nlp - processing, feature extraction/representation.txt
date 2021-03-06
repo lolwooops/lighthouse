@@ -1,0 +1,59 @@
+representations
+how to transform preprocessed text into numerical features
+
+text is messy, hard to model
+bag of words, tfidf, word2vec
+
+
+bag of words (bow)
+simplifying representation in nlp/info retrieval
+text represented as bag of its words disregarding grammar and word order - keep multiplicity
+
+bag of words model commonly used in methods of docu classification
+occurence of ea word = feature for training classifier
+
+involves 
+-vocab of known words (dictionary)
+-measure of presence of known words
+-> sparse vector of d-unique words; fill it with number of times corresponding word occurs in ea doc
+-> requires more memory + resources when modeling 
+
+simple text cleaning techniques
+-ignore case, punc, freq words (stop words), misspelled, stemming
+
+n-grams model
+create a vocab of grouped words - captures a bit more meaning 
+ea word/token is called a gram (vocab of 2 word pairs = bigram etc)
+
+
+
+tfidf - term frequency inverse docu freq
+intended to reflect how important a word is to a doc/collection
+value increases proportionally to # times word appears in doc and offset by # of doc in collection that contain the word
+-> helps adjust for words that appear more freq in general
+
+term freq - used in connection with information retrieval and shows how frequently an expression occurs in doc
+-indicates significance of a term within overall doc
+TF = #times w occurs in r/# words in r -- probability of finding a word in a doc
+
+inverse doc freq - measure of how much information the word provides - if its common/rare across all doc
+used to calc weight of rare words across all doc in the corpus
+words that occur rarely have a high idf score -- log scaled inverse fract of doc that contain the word
+IDF = log(#doc/#doc containing w)
+
+=> TFIDF = TF*IDF
+
+a high weight in tfidf is reached by a high term freq and low doc freq - weights tend to filter out common terms
+TFIDF gives larger values for less freq words in doc collection; high when both IDF and TF values are high = word is rare in whole doc but freq in a doc
+
+TFIDF doesnt take semantic meaning of words
+
+weigh down freq terms and scale up rare ones
+
+
+
+
+word2vec
+used for learning vector reps of words (word embeddings)
+typically done as preprocessing step - learned vectors are fed into discriminative model (rnn) to generate predictions
+-> takes semantic meaning of words

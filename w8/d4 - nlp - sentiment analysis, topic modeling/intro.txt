@@ -1,0 +1,18 @@
+sentiment analysis
+contextual mining of text
+-identifies and extracts subjective information
+-used to discover opinions, emotions, feelings 
+
+topic modelling
+-used for uncovering hidden structure in collection of texts
+-dimensionality reduction - represent text in topic space rather than feature space
+-unsupervised learning - compared to clustering
+	-build clusters of words rather than clusters of texts
+-tagging - tag abstract topics that occur in collection of documents 
+	-latent semantic analysis
+	-probabilistic lantent semantic analysis
+	-nonnegative matrix factorization
+	-latent dirichlet allocation
+
+
+

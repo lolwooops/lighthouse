@@ -1,0 +1,30 @@
+w2v
+
+combination of models used to represent distributed representations of words - alg that accepts text collection as an input and outputs vector representation for each word
+
+2 w2v - cbow and skipgram
+skip gram - given a set of sentences, model loops on words of ea sentence and tries to use current word w to predict neighors
+cbow - uses contexts to predict current word (uses window size)
+
+vectors used to represent words = neural word embeddings (nwe)
+similar to an autoencoder but rather than training against input words, w2v trains words against other words that neighbor them
+
+when feature vector assigned to a word cannot be used to accurately predict words contexts, vector components are adjusted
+vector of words judged similar by their context are put closer together 
+
+
+
+skipgram
+takes in a corpus of text and creates hot vector for each word
+hot vector = vector rep of a word where vector is the size of the vocab (total unique words)
+all dims are set to 0 except dim representing word that is used as an input at that point
+
+output of the network is a single vector containing the probability that a randomly selected nearby word is that vocab word
+w2v - distributed rep of a word is used - ea word represented by a dist of weights across elements
+-rep of a word is spread across all elements in vector and each element in vector contributes to definition of many words
+
+
+
+
+Skip-gram: works well with small amount of the training data, represents well even rare words or phrases
+CBOW: several times faster to train than the skip-gram, slightly better accuracy for the frequent words

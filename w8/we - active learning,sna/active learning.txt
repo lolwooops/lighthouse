@@ -1,0 +1,32 @@
+active learning
+-learning alg can choost the data it wants to learn from
+-can achieve similar results with substantially smaller training samples
+
+-for shortage of labelled data, similar design methodology to transfer learning
+
+main hypothesis in active learning - if learning alg can choose the data it wants to learn from, it can perform better than traditional methosd with less data for training
+
+typically 3 scenarios 
+1. membership query synthesis
+-learner generates an instance from underlying natural distribution
+-data = pictures of digits, learning would create an image that is similar to a digit
+2. stream based selective sampling
+make the assumption that getting unlabelled instance is free
+-select each unlabelled instance one at a time - allow learner to determine if it wants to query label of instance or reject it on informativeness (using query strat)
+3. pool based sampling
+assumes that there is a large pool of unlabelled data 
+-instances drawn from pool according to informativeness measure - applied to all instances in the pool/some subset, then most informative instances are selected
+-all unlabelled images of digits ranked and selected
+
+query strategies
+main different btw active and passive learner is ability to query instances based on past queries 
+-least confidence - learner selects the instance for which it has least confidence in its most likely label (query something its not sure about) 
+shortcoming - takes into consideration the most probable label and disregards other label probs
+-margin sampling - overcomes LC disadvantage by selecting instance that has the smallest difference btw first and 2nd most probably labels
+-entropy sampling - utilize all possible label probabilities
+
+-gather data
+-split into seed and unlabelled datasets
+-train
+-choose unlabelled instances
+-stopping criteria (repeat 2-3 until)

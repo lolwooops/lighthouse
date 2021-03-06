@@ -1,0 +1,64 @@
+nltk
+
+stopwords - dont learn anything wtih 'the' -> take it out
+
+drop stemming (ing, etc)
+
+lemmatization -> intelligently reduce vocab size by simplifying words that are similar in meaning
+
+
+wordnetlemmatizer 
+-> combo of both
+rocks -> rock
+corpora -> corpus
+better -> good
+
+
+oldest approach
+create doc term matrix (vectorize list of words)
+
+alg - bag of words
+bag a bunch of words and turn it into a value (count of how many times a word occurs)
+CountVectorizer
+
+drawbacks of bag of words
+-new sentences contain ne words - vocab size increase -> length of vectors increase too
+-vectors contain many 0s - result in sparse matrix
+-retaining no information on grammar of sentences or ordering of words in text
+	-rely only on word freq
+	-no patterns, relations
+
+text freq - inverse doc freq TF IDF vectorizer
+creates a dodc term matrix where columns rep single unique terms but cell represents weighting meant to rep how important a word is to a doc
+importance -> high text freq in one doc, but low freq in other docs
+eg 'the' -> high text freq and high doc freq -> low importance
+
+term freq (tf) - scoring of freq of word in current doc
+since every doc is diff inlength, possible term would appear much more times in long doc than shorter ones
+term freq divided by doc length to normalize
+
+
+
+word2vec - shallow 2 layer neural network that accepts text corpus as input and return word embeddings as output (convert words to vec)
+-preserves relationship btw words
+-deals with addition of new words in vocab
+-results in better predictions if w2v processed data used as input to another nn
+
+-feature size doesnt increase by increasing vocab list
+-vector rep allows distance btw vectors -> relation btw words
+
+
+continuous bag of words (cbow)
+can identify context words and target words
+context words -> words around target word
+give context words and it returns target words
+
+skipgram -> give target words and returns context words
+
+
+
+glove - vectorizes words
+similar to tfidf + cooccurence of words
+ratios of word-word co occurence probabilities have potential for encoding some form of meaning
+
+

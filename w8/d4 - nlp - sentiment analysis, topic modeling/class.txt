@@ -1,0 +1,63 @@
+to extract info encoded in lang 
+-supervised (annotated label prediction for sentences/doc)
+-unsupervised (implicity req understanding of language
+
+nl ds -> preprocess -> numeric rep -> model -> output
+
+neural networks good for time series
+other models good for bag of words (fixed length) - lose syntax info
+
+sentiment analysis
+-how negative vs how positive?
+challenges - large vocab, syntax, writing style, scarcasm, negation (not good)
+-supervised learning
+
+
+countvectorizer 
+word tokenize
+
+
+
+
+topic modelling
+-output -> probabilities/scores over k topics
+-unsupervised training
+
+LDA
+bayesian model - infer hiddne variables that generated data
+-ea doc is a mixture of corpus wide topics (probability distribution over topics)
+-ea topic is a mixture of words (probability distribution over words)
+
+obs features - words across all doc
+hidden features - all other variables
+hyperparameters - a b, number of topics
+	b = a priori belief on per topic word dist
+	a = what topics occur together
+
+LDA dont use labelled y's -> outputs labeled y's
+
+
+fit LDA -> lda.components_ -> float matrix of spane (ntopics, nwords)
+visualization pyLDAvis
+
+
+
+
+language modeling
+-input seq of words 
+-output multiclass classification (#classes = size of vocab)
+-supervised learning - dont need to annotate
+-datasets - any collection
+--> representation/transfer learning, typing assistance
+
+read 1 word at a time, each word update memory of meaning and syntax,-> knowing current meaning and syntax predict next word
+
+
+
+
+translation
+supervised learning
+
+read one word at a time (encoding source language) - update memory of meaning - translate using mapping
+
+2 rnn

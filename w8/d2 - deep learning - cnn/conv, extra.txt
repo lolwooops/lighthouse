@@ -1,0 +1,12 @@
+pooling - shrinks image stack from filtering (convolution)
+-pick a window size (2,3)
+-pick a stride (2)
+-walk window across filtered images
+-from ea window take the max value
+
+
+llimitations
+convnets only capture local spatial patterns
+-if not image, not as useful
+-if data just as useful when columns swapped then convnets not as good
+

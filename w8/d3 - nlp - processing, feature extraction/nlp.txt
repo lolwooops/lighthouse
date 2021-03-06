@@ -1,0 +1,167 @@
+nlp
+automatic manipulation of natural language (speech and text)
+nl data is hard to work with bc messy
+
+linguistics - grammar semantics phonetics
+computation linguistics - modern study of linguistics using tools of cs
+
+nlp -> read decipher understand and make sense of language in a manner that is valuable
+syntactic + semantic analysis
+
+syntax - arrangement of words in a sentence such that they make grammatical sense
+nlp -> how nl aligns with grammatical rules
+-lemmatization - reducing various inflected forms of a word into single form
+-mophological segmentation - dividing words into individual units called morphemes
+-word segmentation - dividing large piece of continuous text into distinct units
+-part of speech bagging - identifying part of speech for every word
+-parsing - involves undertaking grammatical analysis for provided sentence
+-sentence breaking - placing sentence boundaries on large piece of text
+stemming - cutting inflected words to their root form
+
+
+semantic - meaning conveyed by text
+-named entity recognition - determining parts of a text that can be identified and categorized into preset groups (names of people/place)
+-word sense disambiguation - giving meaning of word based on context
+-nl generation - using databases to derive semantic intentions and convert them into human language
+
+
+
+data preparation
+
+Correct data preparation is very important for all machine learning techniques, NLP not being an exception. There are many things that need to be taken care of before modeling to maximize its power:
+
+Tokenization
+Stopwords cleaning
+Removing punctuation
+Normalizing
+Stemming
+
+
+LOAD
+
+filename = 'metamorphosis_clean.txt'
+file = open(filename, 'rt')
+text = file.read()
+file.close()
+
+
+SPLIT BY WHITESPACE
+
+filename = 'metamorphosis_clean.txt'
+file = open(filename, 'rt')
+text = file.read()
+file.close()
+# split into words by white space
+words = text.split()
+print(words[:100])
+
+
+SELECT WORDS
+
+filename = 'metamorphosis_clean.txt'
+file = open(filename, 'rt')
+text = file.read()
+file.close()
+# split based on words only
+import re
+words = re.split(r'\W+', text)
+print(words[:100])
+
+
+SPLIT BY WHITESPACE AND REMOVE PUNC
+
+table = str.maketrans('', '', string.punctuation)
+
+filename = 'metamorphosis_clean.txt'
+file = open(filename, 'rt')
+text = file.read()
+file.close()
+# split into words by white space
+words = text.split()
+# remove punctuation from each word
+import string
+table = str.maketrans('', '', string.punctuation)
+stripped = [w.translate(table) for w in words]
+print(stripped[:100])
+
+
+NORMALIZING
+
+filename = 'metamorphosis_clean.txt'
+file = open(filename, 'rt')
+text = file.read()
+file.close()
+# split into words by white space
+words = text.split()
+# convert to lower case
+words = [word.lower() for word in words]
+print(words[:100])
+
+
+tokenization and cleaning with nltk
+
+filename = 'metamorphosis_clean.txt'
+file = open(filename, 'rt')
+text = file.read()
+file.close()
+# split into sentences
+from nltk import sent_tokenize
+sentences = sent_tokenize(text)
+print(sentences[0])
+
+filename = 'metamorphosis_clean.txt'
+file = open(filename, 'rt')
+text = file.read()
+file.close()
+# split into words
+from nltk.tokenize import word_tokenize
+tokens = word_tokenize(text)
+print(tokens[:100])
+
+
+FILTER OUT PUNC
+
+from nltk.tokenize import word_tokenize
+tokens = word_tokenize(text)
+# remove all tokens that are not alphabetic
+words = [word for word in tokens if word.isalpha()]
+print(words[:100])
+
+
+FILTER OUT STOPWORDS
+
+from nltk.corpus import stopwords
+stop_words = stopwords.words('english')
+print(stop_words)
+
+from nltk.corpus import stopwords
+stop_words = set(stopwords.words('english'))
+words = [w for w in words if not w in stop_words]
+print(words[:100])
+
+
+STEM WORDS
+
+from nltk.stem.porter import PorterStemmer
+porter = PorterStemmer()
+stemmed = [porter.stem(word) for word in tokens]
+print(stemmed[:100])
+
+
+additional text cleaning
+
+domain specific words, phrases, synonyms
+numbers, dates, amounts
+common typos 
+
+
+
+
+
+
+
+
+
+
+
+

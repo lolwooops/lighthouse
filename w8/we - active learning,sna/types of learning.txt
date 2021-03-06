@@ -1,0 +1,66 @@
+Learning Problems
+
+1. Supervised Learning
+-classification
+-regression
+2. Unsupervised Learning
+-clustering
+-density estimation
+-visualization (scatterplot)
+-projection - creating lower dimensional rep of data (PCA)
+3. Reinforcement Learning
+
+
+Hybrid Learning Problems
+
+4. Semi-Supervised Learning - training data contains very few labeled examples and large number of unlabeled - make use of all data
+5. Self-Supervised Learning - unsupervised learning problem that is framed as a supervised learning problem in order to apply supervised learning alg to solve it
+-eg computer vision where unlabeled images available, used to train supervised model such as making images grayscale - predict color
+-auto encoders
+-generative adversarial networks (gans) - most commonly used for creaint syntehtic protographs  using only collection of unlabeled examples from target domain
+-trained indirectly via separate discriminator model that classifies examples of photos from domain as real of fake
+-> results are fed back to update gan model 
+6. Multi-Instance Learning
+-supervised learning problem where individual examples are unlabeled, bags/groups of samples are labeled (bags -> duplicates can exist)
+-modeling involves using knowledge that one or some instances in a bag are associated with a target label - predict label for new bags in the future given their composition of multiple unlabled examples
+
+
+Statistical Inference - fitting a model and making a prediction = both types of inference
+
+7. Inductive Learning
+-using evidence to determine the outcome
+specific -> general
+8. Deductive Inference
+-using general rules to determine specific outcomes
+general -> specific
+9. Transductive Learning
+-predicting specific examples given specific examples from a domain
+specific -> specific (no generalization is required)
+-knn - does not model trianing data but uses it directly each  time a prediction is required
+
+Induction: Learning a general model from specific examples.
+Deduction: Using a model to make predictions.
+Transduction: Using specific examples to make predictions.
+
+
+Learning Techniques
+
+10. Multi-Task Learning
+-type of supervised learning that involves fitting a model on one dataset that addresses mult related problems
+-involve same inputs patterns that may be used for mult different outputs or supervised learning problems
+-each output may be predicted by a different part of the model, allowing core of the model to generalize across each task 
+-eg - same word embedding is used to learn distributed representation of words in text -> shared across mult different nlp supervised learning task
+11. Active Learning
+-technique where model is able to query a human user operator during the learning process
+-type of supervised learning, approach to solving semi supervised learning problems; more efficient with data used
+-useful when there is not much data available and new data is expensive to collect/label
+-allows sampling of domain that minimizes # of samples and max effectiveness of model
+12. Online Learning
+-using data available and updating model directly before pred is req
+-for probs where obs are provided over time, prob dist is expected to change over time -> model needs to change in order to capture changes
+13. Transfer Learning
+-type of learning where model is first train on one task - some or all model is used as starting point for related task
+-diff from multi task learning - task are learned seq in transfer learning (multi task seeks good perf on all considered tasks by single model at the same time in parallel)
+-eg image classification
+-2 or more models are fit on the same data and predictiosn from each models are combined
+14. Ensemble Learning
