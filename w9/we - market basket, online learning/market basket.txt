@@ -1,0 +1,29 @@
+market basket analysis - data mining technique
+unsupervised learning
+basis for recommender engine
+
+generally used in retail industry
+
+support
+-given all transactions, suport is the % of transactions that contain a given item combination - often combination that fall below a support threshold are ignored in further analysis 
+confidence
+-given item A is purchased, whats the chance that item C is bought (conditional probability)
+lift 
+-suppose data shows that items a and c are occurring togehter in many transactions, do a and c have an association or are they occuring together by chance
+
+# Example code-snippet showing important methods in python
+# Source: https://pbpython.com/market-basket-analysis.html
+# Accessed: 2019-03-16
+ 
+from mlxtend.frequent_patterns import apriori
+from mlxtend.frequent_patterns import association_rules
+ 
+#basket_sets are the items bought together derived from invoices after approriate transformation and data cleaning.
+ 
+#minimum support taken here as 0.07
+frequent_itemsets = apriori(basket_sets, min_support=0.07, use_colnames=True)
+ 
+# recommneded rules/items based on association learning
+rules = association_rules(frequent_itemsets, metric="lift", min_threshold=1)
+ 
+rules.head()

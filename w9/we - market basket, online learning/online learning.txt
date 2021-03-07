@@ -1,0 +1,13 @@
+online learning - allows us to update our models in real time
+-refreshing ml models - done in batches
+
+They manually train on newer data, and deploy the resulting model once they are happy with its performance
+They schedule training on new data to take place, say, once a week and automatically deploy the resulting model
+
+
+but want a model to learn+ predict in real time
+
+
+
+online stochastic gradient descent
+
