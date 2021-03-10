@@ -1,0 +1,18 @@
+apriori - association rule mining
+
+Support
+support refers to the popularity of item and can be calculated by finding the number of transactions containing a particular item divided by the total number of transactions.
+Confidence
+Confidence refers to the likelihood that an item B is also bought if item A is bought. It can be calculated by finding the number of transactions where A and B are bought together, divided by the total number of transactions where A is bought. 
+Confidence is similar to Naive Based Algorithm.
+Lift
+Lift refers to the increase in the ratio of the sale of B when A is sold.
+lift = 1 → There is no association between A and B.
+lift < 1→ A and B are unlikely to be bought together.
+lift > 1 → greater the lift greater is the likelihood of buying both products together.
+
+-set min value for support and confidence 
+-extract all subsets having higher value of support than min threshold
+-select all rules from subsets with confidence higher than min threshold
+-order rules by desc lift
+

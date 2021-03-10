@@ -1,0 +1,32 @@
+recommender engines
+
+typically uses ab testing
+
+content based vs collab
+content based - use knowledge of ea item to recommend a similar one
+-works without user reviews/hebaviour
+-requires desc data of products, doesnt expand user interests
+collab based - use knowledge of users past purchases selections to recommend what similar users did
+-works without desc product data
+-difficult to make recommendations to new users
+
+-define item features
+-define distance metric
+	-euclidean distance (geometric distance btw 2 points)
+	-cosine similarity (angular distance)
+-learn a distance metric?
+  -learn relative feature importance, accoutn for feature interactions
+  -requires some sort of supervision for training
+
+
+movie feature engineering
+-sounds - effects, music, dialogue
+	-tempo, pitch, key, amplitude, volume
+-current events
+
+
+cooccurrence feature engineering
+
+word2vec 
+could use for arbitrary data --> object2vec 
+-annotated images

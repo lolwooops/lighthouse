@@ -1,0 +1,19 @@
+recommender engines
+
+filtering
+
+collab - based on collecting and analyzing large amount of information on users behaviours, activites, prefs = pred what users will like based on similarity to other users
+-doesnt rely on content - can recommend things without understanding them
+-knn, pearson correlation
+
+content - based on description of item and profile of users preference - keywords are used to describe items
+-try to recommend items similar to those user liked in past
+hybrid
+
+
+cosine similarity
+the dot product btw 2 vectors = projection of one of them on the other -- if 2 vectors identical = 0, orthogonal = 1
+
+
+apriori
+

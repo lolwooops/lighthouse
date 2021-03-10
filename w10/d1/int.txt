@@ -1,0 +1,237 @@
+neural network
+consists of units (nodes) and dependencies btw units 
+-inputs - parameters - intermediate - repeat - output
+-not a lot of assumptions (flexible) - can be any fn
+-as network gets deeper (more layers) good performance
+
+used for high dimensional unstructured data
+-very little preprocessing/feature eng
+
+-req a LOT of data
+
+
+
+nonlinearities
+-relu (typically in intermediate) - everything below 0 = 0
+	-works well in practice
+	-computationally efficient
+-sigmoid (typically outputs)
+	-outputs btw 0,1
+	-vanishing gradients
+	-not 0 centered
+-tanh (typically outputs)
+	-outputs btw -1,1
+	-zero centered
+	-vanishing gradients
+-softmax 
+	-outputs sum to 1 (good for probs)
+	-less useful for hidden layers
+
+
+
+universal approx theorem
+nn with 1 hidden layer can approx any fn if the width of network (# of hidden layers) can be large
+-networks that deep are much more effective at learning + converge to better solutions
+corresponding approx theorem for depth as well
+
+
+
+architecture decisions
+-how many layers
+-what layer fns
+-how many units
+
+typically deeper = better
+different architecture for different data types
+minor decisions = hyperparameters (units, layers)
+
+
+training deep neural networks
+gradient descent, loss fns
+loss fn wrt parameters, derivative = gradient
+
+
+
+backpropagation
+fitting nn
+-computs gradient of loss fn wrt ea weight of the network for a single output with chain rule one layer at a time from output backwards 
+
+
+multi layer perception -> linear regression (Y = XW*)
+	-apply nonlinear fn at every node -> universal fn approx
+
+
+CNN - reduces # of free parameters - allows network to be deeper, good for images - pixels close to ea other usually have same type of info
+
+architecture
+input - images with dimensions (l w d) (depth = # of channels (rgb))
+conv layer - computes dot product btw weights of neuron and region of input image -> 32x32x12 denoting 12 filters nn uses
+  - abstracts image to feature map
+relu layer (activation fn to resulting dot product)
+POOLing layer -> down samples spatial dimensions of image (w h)
+fully connected -> compute class score, final volume of 1x1xn (n = # of categories to predict)
+
+convolution
+-ea filter of first layer slides across input image and convlution is computer at ea iteration
+
+pooling
+-does not have parameters to learn
+-contributes to increased accuracy of model and improves speed of training by reducing numbero f parameters
+-shrinks image stack from filtering (convolution)
+-pick a window size (2,3)
+-pick a stride (2)
+-walk window across filtered images
+-from ea window take the max value
+
+RELU -> normalization
+-new convolved matrix, anything negative is turne to 0 (removes unnecessary noise)
+
+llimitations
+convnets only capture local spatial patterns
+-if not image, not as useful
+-if data just as useful when columns swapped then convnets not as good
+
+
+RESNET - CNN that allows thousands of conv layers
+-stacks up identity mappings and skips over them, reusing activations from prev layers
+-skipping initially compresses network into only a few layers; when training again, all layers are expanded and residual parts o the network explore more of the feature space
+
+
+
+RNN - connections btw nodes form a directed graph along a temporal sequence - uses memory to process inputs with diff lengths
+"layers" = different steps in time of the same rnn
+-previous outputs are used as inputs
+
+connect outputs of all neurons to inputs of all neurons
+
+LSTM - subset of rnn - good for classifying, processing, making pred based on time series data
+-can go back through many discrete time steps earlier - can learn long term dependences
+-agumented by recurrent gates - forgets
+-feedback connections - returns outputs as inputs 
+-deals with vanishing gradient problem encountered with nn using gradient based learning methods - if gradient too small then weights cant change
+
+
+
+
+
+nlp
+
+preprocessing
+-take out stop works - dont learn anything with words that occur a lot but have no meaning to overall text (the,)
+-stemming
+  -lemmatization - reduce vocab size by simplifying words w similar meaning
+
+
+bag of words - bag a bunch of words and turn it into a value (count of how many times it occurs) (CountVectorizer)
+
+drawbacks of bow
+-new sentences - increases vocab size, length of vectors increase
+-vectors contain many 0s - result in sparse matrix 
+-retains no information on grammar of sentences/ordering of words in text - rely only on word freq, no patterns or relations
+
+continuous bag of words (cbow)
+can identify context words and target words
+context words -> words around target word
+give context words and it returns target words
+
+skipgram -> give target words and returns context words
+n-grams model
+create a vocab of grouped words - captures a bit more meaning 
+ea word/token is called a gram (vocab of 2 word pairs = bigram etc)
+
+
+text freq - inverse doc freq (tfidf)
+creates a doc term matrix where columns represent single unique terms; weights meant to represent how important a word is to a dog
+-importance = high text freq in one doc but low freq in other docs
+-intended to reflect how important a word is to a doc/collection
+value increases proportionally to # times word appears in doc and offset by # of doc in collection that contain the word
+-> helps adjust for words that appear more freq in general
+TF = scoring of freq of word in current doc
+-since every doc is diff in length, possible term would appear much more times in long doc than short ones - divided by doc length to normalize
+- used in connection with information retrieval and shows how frequently an expression occurs in doc
+-indicates significance of a term within overall doc
+
+TF = #times w occurs in r/# words in r -- probability of finding a word in a doc
+
+inverse doc freq - measure of how much information the word provides - if its common/rare across all doc
+used to calc weight of rare words across all doc in the corpus
+words that occur rarely have a high idf score -- log scaled inverse fract of doc that contain the word
+IDF = log(#doc/#doc containing w)
+
+
+word2vec - shallow 2 layer neural network that accepts text corpus as input and return word embeddings as output (convert words to vec)
+-preserves relationship btw words
+-deals with addition of new words in vocab
+-results in better predictions if w2v processed data used as input to another nn
+used for learning vector reps of words (word embeddings)
+combination of models used to represent distributed representations of words - alg that accepts text collection as an input and outputs vector representation for each word
+
+2 w2v - cbow and skipgram
+skip gram - given a set of sentences, model loops on words of ea sentence and tries to use current word w to predict neighors
+cbow - uses contexts to predict current word (uses window size)
+
+vectors used to represent words = neural word embeddings (nwe)
+similar to an autoencoder but rather than training against input words, w2v trains words against other words that neighbor them
+
+when feature vector assigned to a word cannot be used to accurately predict words contexts, vector components are adjusted
+vector of words judged similar by their context are put closer together 
+
+skipgram
+takes in a corpus of text and creates hot vector for each word
+hot vector = vector rep of a word where vector is the size of the vocab (total unique words)
+all dims are set to 0 except dim representing word that is used as an input at that point
+
+output of the network is a single vector containing the probability that a randomly selected nearby word is that vocab word
+w2v - distributed rep of a word is used - ea word represented by a dist of weights across elements
+-rep of a word is spread across all elements in vector and each element in vector contributes to definition of many words
+
+Skip-gram: works well with small amount of the training data, represents well even rare words or phrases
+CBOW: several times faster to train than the skip-gram, slightly better accuracy for the frequent words
+
+
+
+sentiment analysis - supervised learning
+contextual mining of text
+-identifies and extracts subjective information
+-used to discover opinions, emotions, feelings 
+
+
+topic modelling
+-used for uncovering hidden structure in collection of texts
+-dimensionality reduction - represent text in topic space rather than feature space
+-unsupervised learning - compared to clustering
+	-build clusters of words rather than clusters of texts
+-tagging - tag abstract topics that occur in collection of documents 
+	-latent semantic analysis
+	-probabilistic lantent semantic analysis
+	-nonnegative matrix factorization
+	-latent dirichlet allocation
+LDA
+bayesian model - infer hiddne variables that generated data
+-ea doc is a mixture of corpus wide topics (probability distribution over topics)
+-ea topic is a mixture of words (probability distribution over words)
+
+obs features - words across all doc
+hidden features - all other variables
+hyperparameters - a b, number of topics
+	b = a priori belief on per topic word dist
+	a = what topics occur together
+
+
+language modeling
+-input seq of words 
+-output multiclass classification (#classes = size of vocab)
+-supervised learning - dont need to annotate
+-datasets - any collection
+--> representation/transfer learning, typing assistance
+
+read 1 word at a time, each word update memory of meaning and syntax,-> knowing current meaning and syntax predict next word
+LDA dont use labelled y's -> outputs labeled y's
+
+
+translation
+supervised learning
+
+read one word at a time (encoding source language) - update memory of meaning - translate using mapping
+
+2 rnn

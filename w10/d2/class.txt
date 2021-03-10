@@ -1,0 +1,58 @@
+recommendation systems
+2 entities, users and items
+utility matrix - matrix that captures interaction btw users and items
+
+sparsity - problem
+-cannot expect users will interact with all items
+-do we want to predict missing ratings?
+
+content based - based on features of items and users (eg movie genre)
+
+ab testing to optimize
+
+dont need a bunch of users to train your model
+-ea user modeled separately, might capture uniqueness of taste
+-can obtain features of items
+
+-feature acquisition - what features to explain diff ratings?
+ -getting features expensive
+-low diversity - hardly recommend an item outside users profile
+-cold start - no info in beginning
+
+
+item to item
+predict rating? 
+-calc similarty btw movies
+-select k items most similar to movie
+-agg ratings
+
+user to user 
+-calc similarity btw users
+-select k users most similar to user and rated movie
+-agg ratings
+
+
+latent factors - dimension reduction
+in collab filtering, assume we dont havep rofiles
+can learn movie profile from user/vice versa
+
+learning k new features
+-new features, just no interpretation for them
+
+approach - estimate and missing entries in a row and recommend ones with highest ratings to user
+another approach use learned movie features to find movies similar to specific movie
+or apply ml (kmeans, knn)
+
+assessment of recommender can be tricky - mse mae can be misleading
+-want to measure = interest that user has on recommended items
+
+--> training and eval offline is not ideal
+
+
+responsiveness - how fast does system change as new user.items interactions arrive
+persistence - how long do you want to keep an item in your recommended list
+
+
+missing values = matrix decomp cant happen naturally -> use ml iterative approach to complete missing values
+actual svd works on filled data in matrices like pca does -> use truncated svd
+

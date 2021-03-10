@@ -1,0 +1,56 @@
+2 main types of collab filtering 
+-memory based
+-model based
+
+-find similar users/items
+-predict ratings of items not rated by user
+--how to determine which users/items are similar
+--given similar users, how to determine rating based on ratings of similar users
+--how to measure accuracy of ratings 
+
+
+memory based - stat techniques applied to entire dataset to calc pred
+find rating R that user U would give item I
+-find users similar to U who have rated item I
+-calc rating R based on ratings of users found in prev step
+
+euclidean distance doesnt always show pattern
+-cosine similarity
+-centered cosine (nornalize avg rating = 0)
+	-allows imputing missing values to 0
+
+more similar users than others -- weighted more -- multiply each rating by a similarity factor (inverse of distance -- eg subtract cosine distance from 1 to get cosine similarity)
+
+
+user based vs item based
+-rating matrix used to find similar users based on ratings = user to user collab filtering
+
+user based - for user U and a set of similar users determined based on rating vectors consisting of given item ratings, the rating for an item I is found by picking out N users from similarity list who have rated the item I and calc rating based on N ratings
+
+item based - for item I with similar items determined based on rating vectors consisting of received user ratings, U is found by picking out N items from similarity list that have been rated by U and calc rating based on N ratings
+	-more stable than user base if users > items
+	-performs better with sparse rating matrix
+
+
+model based
+-involve a step to reduce user-item matrix
+
+dimensional9ity reduction
+-matrix factorization
+matrix X is reduced into 2 matrices - matrix with m users, n items
+m and n = latent factors - indication of hidden characteristics about users or items
+
+-SVD, OCA, NMF,
+
+
+
+collab filtering works with interactions that users have with items
+-doesnt require features about items or users to be known
+	-features could be useful improving predictions
+-help recommenders not overspecialize in users profile and recommend items that are completely diff from what theyve seen before
+
+
+-can lead to problems like cold start (no data)
+-data sparsity can affect quality of user based recommenders
+-scaling can be challenge for growing datasets as complexity can become too large --- item based faster than user based when large
+-might observe recommendations already popular ignoring less popular items

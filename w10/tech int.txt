@@ -1,0 +1,29 @@
+fav model + what does it optimize
+
+
+
+gradient descent - optimization
+-loss fn derivative - converges to minima
+-minibatch updates - scalable, faster
+
+can time series be used as supervised learning
+shifting predict t from t-1
+
+tfidf
+-weight rare words
+-inverted index = more efficient than bow (sparse matrix)
+
+
+
+
+
+xgboost
+-tree based alg
+boost = emsemble method - reduce bias and variance
+-weak learners seq focuses on weakness of prev -> weights readj after learned is added
+xgboost -> parallelism and hardware optimization - can perform tree pruning in order to remove branches w low prob
+-loss fn of model has a term to penalize complexity of model with regularization to smooth learning process (less overfitting)
+
+random forest vs gboost
+-random forest builds trees independently; gboost one at a time -> next learner improves on prev learner
+
