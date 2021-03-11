@@ -1,0 +1,62 @@
+online learning and reinforcement learning
+reinf req online
+
+training -> leanring -> h(x) --> repeat
+
+stochastic (online) gradient descent, true gradient is approximated by a gradient at a single example - alg performs update for each training example
+SGD - finds weights from samples rather than whole 
+ups
+-updates immediately give insight into perf of model and rate of improvement
+-easy to understand
+-increased model update freq can result in faster learning on some problems
+-noisy update process can allow the model to avoid local minima
+downs
+-updating model so freq is more comp expensive - significantly longer on larger sets
+-freq updates can result in noisy gradient signal -- cause model parameters/model error to jump around -- higher var over training epochs
+-noisy learning process down the error gradient makes it hard for alg to settle on error min for model
+
+
+
+offline learning
+-learning phase - train on predefined set of learning examples - create hyp
+-testing phase - hyp used to find accurate conclusion for given new data
+gradient descent -- takes samples/whole set rather than singles
+
+
+batch gradient descent
+grad desc alg that calcs error for ea example in the training set but only updates model after all trianing examples have been evaluated - one cycle through entire set is called training epoch
+ups
+-fewer updates to model means this variant is more comp efficient
+-decreased update freq results in a more stable error gradient and may result in a more stable conv on some problems
+-sep of the calc of prediction errors and model update lends the alg to parallel processing based implementation
+downs
+-more stable error gradient may result in premature conv of the model to a less optimal set of parameters
+-bgd is implemented in a way that it req the entire training set in memory and available to alg --> inefficient
+
+
+
+mini batch gd
+splits the training set into small batches that are used to calc model error and update model coefficients -- can sum gradient over minibatch -- reduces variance of the gradient
+seeks to find balance btw robustness of stochastic gd and efficiency of gd
+
+
+if data changes over time (eg stock prices) use online learning 
+otherwise use minibatch
+
+
+
+
+reinforcement learning
+focus on how player might act to maximize given reward
+
+markov decision process
+decision maker (agent) that interacts with env -- interactions occur sequentially over time
+at ea time step, agent will get some rep of env state - given rep, agent selects action to take. env is transitioned to new state and agent is given a reward as a consequence of prev action -- repeat
+agents goal is to max total amount of rewards in given states
+
+
+bellman optimality
+-for any state action pair s,a at time t, the expected return from starting in a state s, selecting action a and following optimal policy thereafter is going to be expected reward we get from taking action a in state s (Rt+1) plus max expected discounted return that can be achieved from any possible next state action pair (s',a')
+
+epsilon greedy strategy
+e = exploration rate, start with e = 1 -- as agent learns about environment, e decays

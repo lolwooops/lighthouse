@@ -1,0 +1,56 @@
+reinforcement learning - based on learning environment
+-about making decisions sequentially
+-output depends on the state of the current input and the next input depends on the output of the prev input
+-decision dependent -- give labels to sequences of dependent decisions
+
+RL can be seen as markov decision process - memoryless so only care about current state
+-> agent -> action -> environment -> obs/reward ->
+
+input frame -> layers -> output
+dont know target label
+layers => policy network; policy gradients 
+feedback - scoreboard
+agent wants to maximize feedback (rewards)
+
+any loss -> multiply gradient with -1 so less likely to repeat steps
+
+
+positive reinforcement
+-positive effect on behaviour - when an event occurs because of behaviour, increase strength/freq of behaviour
+-maximizes performance
+-sustain change for a long period of time
+--too much reinforcement can lead to overload of states - diminish results
+
+negative reinforcement
+-strengthening behaviour because negative condition is stopped/avoided
+-inc behaviour
+-provide defiance t o minimum standard of performance
+--only provides enough to meet minimum behaviour
+
+
+credit assignment problem - need to know steps that led to loss
+
+reward shaping - manually designing reward function
+have to reshape for every environment (unscalable)
+alignment problem - overfitting for rewards 
+-- not optimal
+
+
+
+
+technical
+
+- add feedback signals (dense) -- create supervised settings related to task for agent to solve
+
+auxilliary losses
+-feedback signals are often sparse that agent never succeeds in extracting useful features from input frames -> add learning goals to agent that leverage supervised learning for useful feature extraction
+
+curiosity driven explroation
+-incentivize agent to learn about environment
+e-greedy exploration
+-start off with 100% (e)xploration chance and then gradually decrease  e to follow policy
+-- if env is hard to explore, simple agent with e-greedy will never explore full env (overfitting)
+-forward model - get frames and forward model tries to predict next frame -- learn dynamics of environment, what will happen next
+--use these errors to augment sparse feedback signals
+
+hindsight experience replay
